@@ -2,7 +2,7 @@
 
 Foundry Launcher staging packets are pre-execution documents for approval-gated work.
 
-V0.3 and V0.4 remain manual. These rules do not introduce automation, UI, CLI, Linear integration, GitHub integration, Codex self-launching, database, server, deployment, app routes, dependencies, or project registry mutation.
+V0.3, V0.4, and V0.5 remain manual. These rules do not introduce automation, UI, CLI, Linear integration, GitHub integration, Codex self-launching, database, server, deployment, app routes, dependencies, or project registry mutation.
 
 ## Packet Required
 
@@ -48,3 +48,4 @@ Codex, Linear, GitHub, automation, deployment, registry, client-facing, pricing,
 
 - Use the [Launcher Packet Lifecycle Rules](../system/workflows/foundry-launcher/launcher-packet-lifecycle-rules.md) for packet statuses, status transitions, and decision updates.
 - Use the [Technical Execution Delegation Rules](../standards/technical-execution-delegation-rules.md) to decide whether routine technical execution inside approved scope may continue without Dobromir.
+- Future UI surfaces must follow the staging rules and lifecycle rules. V0.5 only defines UI readiness and does not implement UI.
