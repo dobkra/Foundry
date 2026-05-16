@@ -519,8 +519,35 @@ The Launcher should ask whether the packet requires deeper planning:
 
 The UI should use dropdowns/toggles for these decisions, not free text where possible.
 
+The future Launcher UI should eventually support a lightweight architecture-depth selector inspired by TOGAF architecture thinking, but not a full TOGAF process.
+
+Possible selector values:
+
+- Basic.
+- Discovery needed.
+- Business functions needed.
+- Architecture needed.
+- Goals/outcomes needed.
+- UI/workflow sprint needed.
+- Issue breakdown needed.
+
+See [Lightweight Architecture Planning Framework](../../../standards/lightweight-architecture-planning-framework.md).
+
 Do not implement these packs in V0.5.
 Only document this progressive planning model.
+
+## Planning Pack Templates
+
+V0.6 defines reusable Markdown templates for the progressive planning pack model:
+
+- [Planning Packs Overview](../../../templates/launcher/planning-packs/README.md)
+- [Discovery Pack Template](../../../templates/launcher/planning-packs/discovery-pack-template.md)
+- [Architecture Pack Template](../../../templates/launcher/planning-packs/architecture-pack-template.md)
+- [Business Functions Pack Template](../../../templates/launcher/planning-packs/business-functions-pack-template.md)
+- [Goals and Outcomes Pack Template](../../../templates/launcher/planning-packs/goals-and-outcomes-pack-template.md)
+- [UI / Workflow Sprint Pack Template](../../../templates/launcher/planning-packs/ui-workflow-sprint-pack-template.md)
+- [Issue Breakdown Pack Template](../../../templates/launcher/planning-packs/issue-breakdown-pack-template.md)
+- [Planning Pack Selection Guide](../../../templates/launcher/planning-packs/planning-pack-selection-guide.md)
 
 ## Not In V0.5
 
