@@ -1,22 +1,27 @@
 # Scope
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
-## Proposed V0.6 Scope
+## Reviewer Decision
 
-Foundry Launcher V0.6 may create reusable Markdown templates for progressive planning packs.
+Decision: `approved_for_manual_execution`
 
-In scope:
+Reviewer: Dobromir
 
-- Create planning pack templates.
-- Create planning pack selection guide.
-- Link templates from Launcher UI readiness spec.
-- Add a lightweight TOGAF-inspired architecture framework.
-- Define a progressive architecture depth rule.
-- Preserve progressive complexity.
-- Avoid forcing all packs on small work.
-- Prevent planning packs from becoming mandatory bureaucracy.
-- Keep Linear/Codex execution blocked until approval.
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
+
+## Approved V0.6 Scope
+
+Foundry Launcher V0.6 creates reusable Markdown templates for progressive planning packs.
+
+Approved boundary:
+
+- Progressive planning pack templates.
+- Planning pack selection guide.
+- Lightweight TOGAF-inspired architecture planning framework.
+- Progressive architecture depth rule.
 
 ## Explicit Non-Goals
 
@@ -44,7 +49,9 @@ In scope:
 Allowed:
 
 - Documentation-only progressive planning pack templates.
-- Manual staging packet creation.
+- Planning pack selection guide.
+- Lightweight TOGAF-inspired architecture planning framework.
+- Progressive architecture depth rule.
 - Manual documentation links from Launcher docs.
 
 Blocked:
@@ -55,10 +62,11 @@ Blocked:
 - Linear issue creation.
 - GitHub issue creation.
 - Codex task launch.
+- Codex self-launching.
 - Registry mutation.
 - Deployment.
 
-## Acceptance Criteria For Review
+## Verification State
 
 - Planning pack templates exist.
 - Planning pack selection guide exists.
@@ -68,4 +76,3 @@ Blocked:
 - Small work is not forced through all packs.
 - Issue Breakdown Pack requires approved source scope.
 - Launcher UI readiness spec links to the templates.
-- Relative links resolve.

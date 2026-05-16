@@ -1,6 +1,16 @@
 # Classification
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Decision: `approved_for_manual_execution`
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
 
 ## Selected Classification
 
@@ -32,7 +42,7 @@ The work may reflect lessons from prior packets, but review is not the primary c
 
 This is not a `decision_workshop` because it prepares a concrete documentation work package.
 
-Some decision points may remain for Dobromir, but the packet is not decision-only.
+Some future decision points may remain for Dobromir, but the packet is not decision-only.
 
 ## Parent Context
 
@@ -42,12 +52,12 @@ Parent workflow: Foundry Launcher
 
 ## Registry Eligibility
 
-No registry update is expected.
+No registry update is approved.
 
 This packet must not mutate project registry records unless Dobromir separately approves registry work.
 
 ## Execution Eligibility
 
-Execution is limited to documentation-only Launcher lifecycle rule work.
+Execution is limited to documentation/manual Launcher lifecycle governance use.
 
 Automation, UI, CLI, Linear/GitHub integration, Codex self-launching, database, server, deployment, app routes, and registry mutation remain blocked unless separately approved.

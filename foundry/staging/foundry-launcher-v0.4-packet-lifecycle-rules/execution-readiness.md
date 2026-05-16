@@ -1,29 +1,60 @@
 # Execution Readiness
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
 
 ## Setup Permissions
+
+Documentation/manual governance use allowed: yes.
 
 Linear setup allowed: no.
 
 GitHub issue setup allowed: no.
 
-Codex execution allowed: yes, only for this documentation-only V0.4 staging and lifecycle rule PR.
+Codex self-launching allowed: no.
 
 Registry update allowed: no.
 
 Automation allowed: no.
 
-## Current Blockers
+Deployment allowed: no.
 
-- Dobromir has not reviewed the V0.4 packet.
-- Classification approval is pending.
-- High-Level Decision Gate is pending for lifecycle status and decision-update rule approval.
-- Automation, runtime behavior, integrations, deployment, and registry mutation are blocked.
+UI implementation allowed: no.
+
+## Approved Boundary
+
+Allowed:
+
+- Lifecycle rules.
+- Packet status rules.
+- Decision-update procedure.
+- Technical execution delegation reference.
+
+## Remaining Blocked Work
+
+- UI implementation.
+- React components.
+- App routes.
+- Automation.
+- Linear integration.
+- GitHub integration.
+- Codex self-launching.
+- Database.
+- Server.
+- Deployment.
+- Project registry mutation.
+- DK Arkitekter OS repo changes.
 
 ## Approved Next Step
 
-Dobromir review of the V0.4 staging packet and lifecycle rules.
+Use the merged V0.4 lifecycle rules as documentation/manual governance within the approved boundary.
 
 ## Execution Boundary
 

@@ -1,14 +1,14 @@
 # Decision Log
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
-## Initial Decision State
+## Decision State
 
-No V0.6 planning pack template decision has been made.
+V0.6 progressive planning pack templates have been reviewed and merged into `main` for documentation/manual Foundry Launcher governance use.
 
-This packet prepares reusable planning pack templates for Dobromir review.
+## Open Questions For Future Packets
 
-## Open Questions
+These questions may inform later work, but this packet does not approve UI implementation, automation, runtime behavior, integrations, deployment, or registry mutation.
 
 - Should these packs become optional modules inside future UI?
 - Should V0.7 define a full project-initiation example using the packs?
@@ -20,14 +20,16 @@ This packet prepares reusable planning pack templates for Dobromir review.
 - Should small work packages be allowed to bypass architecture packs entirely?
 - Should the framework remain TOGAF-inspired without using formal TOGAF terminology in the UI?
 
-## Initial Notes
+## Decision Notes
 
 - V0.6 remains documentation-only.
-- Templates do not create UI, automation, Linear issues, GitHub issues, Codex tasks, registry updates, deployments, or runtime Launcher behavior.
+- Planning pack templates do not create UI, automation, Linear issues, GitHub issues, Codex tasks, registry updates, deployments, or runtime Launcher behavior.
 - Issue breakdown must not invent scope.
+- The lightweight architecture planning framework is TOGAF-inspired only and does not implement full TOGAF.
+- Small work is not forced through heavy architecture process.
 
 ## Decisions
 
 | Date | Decision | Owner | Notes |
 |---|---|---|---|
-| `[YYYY-MM-DD]` | Pending review | Dobromir | Initial V0.6 staging packet created for progressive planning pack templates. |
+| `2026-05-16` | Approved for documentation/manual governance use | Dobromir | Approved progressive planning pack templates, planning pack selection guide, lightweight TOGAF-inspired architecture planning framework, and progressive architecture depth rule. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved. |

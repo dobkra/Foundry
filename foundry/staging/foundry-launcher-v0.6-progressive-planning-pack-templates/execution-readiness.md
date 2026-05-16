@@ -1,10 +1,18 @@
 # Execution Readiness
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
 
 ## Setup Permissions
 
-Documentation/template work allowed: yes, only for this PR.
+Documentation/manual governance use allowed: yes.
 
 UI implementation allowed: no.
 
@@ -16,22 +24,39 @@ GitHub issue creation allowed: no.
 
 Codex task launch allowed: no.
 
+Codex self-launching allowed: no.
+
 Registry update allowed: no.
 
 Deployment allowed: no.
 
-## Current Blockers
+## Approved Boundary
 
-- Dobromir has not reviewed the V0.6 packet.
-- Classification approval is pending.
-- High-Level Decision Gate is pending for planning pack direction.
-- UI Implementation Gate is blocked.
-- Automation Gate is blocked.
-- Linear/GitHub/Codex setup remains blocked.
+Allowed:
+
+- Progressive planning pack templates.
+- Planning pack selection guide.
+- Lightweight TOGAF-inspired architecture planning framework.
+- Progressive architecture depth rule.
+
+## Remaining Blocked Work
+
+- UI implementation.
+- React components.
+- App routes.
+- Automation.
+- Linear integration.
+- GitHub integration.
+- Codex self-launching.
+- Database.
+- Server.
+- Deployment.
+- Project registry mutation.
+- DK Arkitekter OS repo changes.
 
 ## Approved Next Step
 
-Dobromir review of planning pack templates.
+Use the merged V0.6 planning pack templates and lightweight architecture planning framework as documentation/manual governance within the approved boundary.
 
 ## Execution Boundary
 

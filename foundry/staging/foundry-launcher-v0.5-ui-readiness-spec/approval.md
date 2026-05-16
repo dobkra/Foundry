@@ -1,20 +1,41 @@
 # Approval
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Decision: `approved_for_manual_execution`
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
+
+## Approved Boundary
+
+Approved only for:
+
+- UI readiness specification.
+- Selection-first / typing-light UX principle.
+- Dictation-assisted free-text requirement.
+- Packet-first / prompt-second result model.
+- Future Linear/Codex direction as documentation only.
+- Progressive planning packs as documentation only.
 
 ## Intake Review Gate
 
-State: pending Dobromir review.
+State: approved for documentation/manual governance use.
 
-Notes: The intake stages V0.5 UI readiness before any UI implementation is proposed.
+Notes: The intake is approved for V0.5 UI readiness documentation before any future UI implementation planning.
 
 ## Classification Approval Gate
 
-State: pending Dobromir review.
+State: approved.
 
 Selected classification: `work_package`
 
-Notes: The classification is proposed because V0.5 is scoped documentation work inside the existing Foundry Launcher workflow.
+Notes: V0.5 is scoped documentation work inside the existing Foundry Launcher workflow.
 
 ## Registry Update Gate
 
@@ -24,15 +45,15 @@ Notes: No registry mutation is expected or approved by this packet.
 
 ## Execution Setup Gate
 
-State: blocked.
+State: approved only for documentation/manual governance use.
 
 Notes: No UI implementation, app routes, React components, Linear/GitHub/Codex integration, automation, server, database, deployment, or registry mutation is authorized.
 
 ## High-Level Decision Gate
 
-State: pending for UI direction.
+State: approved for the listed UI readiness documentation direction only.
 
-Notes: Dobromir approval is required before the V0.5 UI readiness direction becomes an approved basis for future UI implementation planning.
+Notes: Any future UI implementation requires a separate approved packet.
 
 ## UI Implementation Gate
 

@@ -1,32 +1,51 @@
 # Approval
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Decision: `approved_for_manual_execution`
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
+
+## Approved Boundary
+
+Approved only for:
+
+- Progressive planning pack templates.
+- Planning pack selection guide.
+- Lightweight TOGAF-inspired architecture planning framework.
+- Progressive architecture depth rule.
 
 ## Intake Review Gate
 
-State: pending Dobromir review.
+State: approved for documentation/manual governance use.
 
-Notes: The intake stages V0.6 planning pack templates before they are treated as approved Launcher template conventions.
+Notes: The intake is approved for V0.6 planning pack templates and lightweight architecture planning reference documentation.
 
 ## Classification Approval Gate
 
-State: pending Dobromir review.
+State: approved.
 
 Selected classification: `work_package`
 
-Notes: The classification is proposed because V0.6 is scoped template work inside the existing Foundry Launcher workflow.
+Notes: V0.6 is scoped template work inside the existing Foundry Launcher workflow.
 
 ## Execution Setup Gate
 
-State: blocked.
+State: approved only for documentation/manual governance use.
 
 Notes: No Linear setup, GitHub issue setup, Codex task launch, automation, deployment, registry mutation, UI, server, database, or app-route work is authorized.
 
 ## High-Level Decision Gate
 
-State: pending for planning pack direction.
+State: approved for the listed planning pack and lightweight architecture documentation only.
 
-Notes: Dobromir approval is required before the planning pack template direction becomes an approved Launcher operating convention.
+Notes: Approval covers manual planning pack templates, the selection guide, lightweight TOGAF-inspired architecture planning reference, and progressive architecture depth. It does not approve future UI implementation, automation, runtime behavior, external integrations, registry mutation, deployment, or Codex self-launching.
 
 ## UI Implementation Gate
 

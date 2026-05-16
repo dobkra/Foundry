@@ -1,10 +1,18 @@
 # Execution Readiness
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
 
 ## Setup Permissions
 
-Documentation/spec work allowed: yes, only for this PR.
+Documentation/manual governance use allowed: yes.
 
 UI implementation allowed: no.
 
@@ -14,19 +22,39 @@ Registry update allowed: no.
 
 Linear/GitHub/Codex integration allowed: no.
 
+Codex self-launching allowed: no.
+
 Deployment allowed: no.
 
-## Current Blockers
+## Approved Boundary
 
-- Dobromir has not reviewed the V0.5 packet.
-- Classification approval is pending.
-- High-Level Decision Gate is pending for UI readiness direction.
-- UI Implementation Gate is blocked.
-- Automation, integrations, database, server, app routes, deployment, and registry mutation are blocked.
+Allowed:
+
+- UI readiness specification.
+- Selection-first / typing-light UX principle.
+- Dictation-assisted free-text requirement.
+- Packet-first / prompt-second result model.
+- Future Linear/Codex direction as documentation only.
+- Progressive planning packs as documentation only.
+
+## Remaining Blocked Work
+
+- UI implementation.
+- React components.
+- App routes.
+- Automation.
+- Linear integration.
+- GitHub integration.
+- Codex self-launching.
+- Database.
+- Server.
+- Deployment.
+- Project registry mutation.
+- DK Arkitekter OS repo changes.
 
 ## Approved Next Step
 
-Dobromir review of UI readiness spec.
+Use the merged V0.5 UI readiness specification as documentation/manual governance within the approved boundary.
 
 ## Execution Boundary
 
