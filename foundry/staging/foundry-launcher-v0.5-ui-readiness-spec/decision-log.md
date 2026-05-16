@@ -14,6 +14,10 @@ This packet prepares the selection-first, typing-light UI readiness direction fo
 - Should parent project/module options come from registry YAML initially?
 - Should packet generation remain manual file output before automation?
 - Should UI show Dobromir-required vs delegated technical execution decisions?
+- Should future dictation use browser speech recognition only, with no audio storage?
+- Should Linear integration start with project/issue creation only after packet approval?
+- Should Codex tasks use a work folder by default or only when needed?
+- Should Discovery / Architecture / Business Functions / Goals / UI Sprint packs become optional packet modules?
 - Should V0.6 be UI wireframe/spec refinement or first implementation packet?
 
 ## Initial Notes
@@ -22,6 +26,10 @@ This packet prepares the selection-first, typing-light UI readiness direction fo
 - V0.5 does not build UI.
 - V0.5 does not create app routes, components, server code, database files, automation, or integrations.
 - The future UI direction is selection-first and typing-light.
+- Free-text fields should be dictation-friendly, but V0.5 does not implement speech recognition or store/process audio.
+- The future result model is packet first, prompt second, execution only after approval.
+- Future Linear/Codex integration direction is documented, but no integration is implemented.
+- Progressive planning packs are documented, but no packs are implemented.
 - UI implementation remains blocked until a separate approved implementation packet exists.
 
 ## Decisions

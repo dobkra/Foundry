@@ -10,11 +10,15 @@ Proposed future UI readiness scope:
 
 - Define selection-first UX principle.
 - Define typing-light interaction model.
+- Define dictation-assisted free-text requirement.
 - Define wizard steps.
 - Define field types.
 - Define controlled vocabularies.
 - Define conservative defaults.
 - Define generated output.
+- Define packet-first / prompt-second result model.
+- Define future Linear/Codex integration direction.
+- Define progressive planning packs.
 - Define non-goals and blocked implementation work.
 - Reference lifecycle and technical execution delegation rules.
 
@@ -27,6 +31,9 @@ Proposed future UI readiness scope:
 - No scripts.
 - No automation.
 - No CLI.
+- No speech recognition.
+- No browser speech APIs.
+- No audio storage or processing.
 - No Linear issue creation.
 - No GitHub issue creation.
 - No Linear/GitHub integration.
@@ -63,9 +70,13 @@ Blocked:
 ## Acceptance Criteria For Review
 
 - The selection-first, typing-light UX principle is recorded.
+- Dictation-assisted free-text is documented as a UX requirement only.
 - Proposed wizard steps are defined.
 - Field types and controlled vocabularies are defined.
 - Conservative defaults keep automation, deployment, registry mutation, and UI implementation blocked unless separately approved.
 - Expected generated output is defined as future behavior, not implementation.
+- Packet-first / prompt-second result model is defined.
+- Future Linear/Codex integration direction is documented but not implemented.
+- Progressive planning packs are documented but not implemented.
 - Lifecycle and technical execution delegation rules are referenced.
 - DK Arkitekter OS is not treated as the default parent.

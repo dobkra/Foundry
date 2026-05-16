@@ -10,6 +10,8 @@ Foundry Launcher V0.5 UI Readiness Specification
 
 Prepare the future Launcher UI specification with selection-first, typing-light UX.
 
+The V0.5 direction now includes selection-first UX, dictation-assisted free text, packet-first result model, future Linear/Codex integration direction, and progressive planning packs.
+
 ## Requested Outcome
 
 Create a reviewable UI readiness spec before any UI implementation begins.
@@ -35,9 +37,13 @@ The UI should help users create staged packets, classify work, record approval r
 In scope:
 
 - Define the selection-first, typing-light UX principle.
+- Define dictation-assisted free-text requirements.
 - Define future wizard steps.
 - Define field types and controlled vocabularies.
 - Define conservative defaults.
+- Define packet-first / prompt-second result model.
+- Define future Linear/Codex integration direction.
+- Define progressive planning packs.
 - Define expected generated output.
 - Define explicit non-goals and blocked implementation work.
 
@@ -55,6 +61,9 @@ Out of scope:
 
 - No UI implementation.
 - No automation.
+- No speech recognition.
+- No browser speech APIs.
+- No audio storage or processing.
 - No server.
 - No database.
 - No integrations.
@@ -71,6 +80,9 @@ Out of scope:
 - Structured selections must define system behavior clearly enough to reduce manual copy/paste.
 - Registry-backed parent selectors require future approved implementation and should not be faked in V0.5.
 - Dobromir-required decisions must remain visible and not be hidden behind UI convenience.
+- Dictation should remain an input convenience, not automation.
+- Future Linear/Codex actions must stay blocked until packet approval permits them.
+- Progressive planning packs should prevent Linear issues from becoming the place where scope is invented.
 
 ## Approval Requirements
 

@@ -44,6 +44,38 @@ Free-text input should be limited to:
 - Reviewer notes.
 - Decision notes.
 
+## Dictation-Assisted Free Text
+
+The future Foundry Launcher UI should be:
+
+- Selection-first for system behavior.
+- Dictation-assisted for unavoidable free-text context.
+
+Typing should remain limited, but some fields require human explanation and should support optional dictation.
+
+Dictation-friendly fields:
+
+- Raw idea.
+- Business/problem context.
+- Why this matters.
+- Current workflow.
+- Target workflow.
+- Pain points.
+- Primary users/roles.
+- Out-of-scope notes.
+- Source materials.
+- Systems/tools.
+- Reviewer notes.
+- Decision notes.
+
+Dictation is an input convenience, not automation.
+
+The UI must not store audio unless explicitly approved in a future privacy/security decision.
+
+For V0.5, record only the UX requirement: free-text fields should be dictation-friendly.
+
+Do not implement speech recognition. Do not add browser APIs. Do not add code, scripts, UI, or runtime behavior.
+
 ## Proposed Wizard Flow
 
 ### 01 Start
@@ -89,13 +121,34 @@ Most metadata should be selected or auto-derived.
 
 ### 04 Intake
 
-Fields:
+This step may use dictation on free-text fields, while still using selections and toggles where possible.
 
-- Raw idea.
-- Requested outcome.
-- Short description.
-- Special context.
-- Risks/unknowns.
+Problem:
+
+- Business/problem context.
+- Why this matters.
+
+People:
+
+- Primary users / roles.
+- Affected systems or teams.
+
+Workflow:
+
+- Current workflow.
+- Target workflow.
+- Pain points.
+
+Boundary:
+
+- Out of scope.
+- First-version limits.
+
+Inputs:
+
+- Source materials.
+- Systems/tools.
+- Existing repositories/files.
 
 This is one of the few typing-heavy areas.
 
@@ -155,9 +208,49 @@ Show:
 
 ### 09 Result
 
-Generate or update staging packet files.
+The future Launcher UI should not end only with a copied prompt.
 
-Show packet path.
+The correct Foundry model is:
+
+Packet first.
+Prompt second.
+Execution only after approval.
+
+The staging packet is the durable source of truth.
+The Codex prompt is a temporary execution instruction generated from the approved packet.
+The PR is the implementation/change record.
+
+The Result step should show:
+
+- Packet id.
+- Packet path.
+- Packet status.
+- Generated/updated packet files.
+- Classification.
+- Approval state.
+- Execution boundary.
+- Blocked work.
+- Next allowed action.
+
+The Result step may include:
+
+- Copy review summary.
+- Copy Codex prompt.
+- Open packet folder.
+- Start another packet.
+
+The Result step must not directly:
+
+- Create Linear issues.
+- Create GitHub issues.
+- Start Codex execution.
+- Mutate registry files.
+- Trigger automation.
+- Deploy anything.
+
+unless a later approved implementation explicitly allows those integrations.
+
+The "Copy Codex Prompt" action should generate a prompt from the packet contents and approved execution boundary. It must not replace the staging packet.
 
 Show next action:
 
@@ -286,6 +379,149 @@ It should not directly:
 
 Those integrations remain blocked unless a later approved implementation explicitly allows them.
 
+## Future Linear and Codex Integration Direction
+
+The future model is:
+
+Launcher packet = source of truth.
+Linear = execution/project-management mirror.
+Codex task = implementation workspace.
+GitHub PR = verified change record.
+
+Future Result step actions may include:
+
+- Create Linear project / issue.
+- Start Codex task.
+- Open work folder.
+- Copy Codex prompt.
+- Open packet folder.
+
+These actions must only become available after the packet approval state allows them.
+
+Linear direction:
+
+- For `new_project`, the Launcher may create or suggest a new Linear project area.
+- For `new_module`, the Launcher may create issues under the parent project's Linear area.
+- For `work_package`, the Launcher may create issues under the existing project/module area.
+- For `audit`, the Launcher may create audit issues under the target project/module.
+- For `decision_workshop`, the Launcher may create a decision-tracking issue only if follow-up tracking is needed.
+
+Linear issues should include:
+
+- Launcher packet id.
+- Packet path.
+- Classification.
+- Approval status.
+- Execution boundary.
+- Blocked work.
+- Target repo.
+- Related branch/PR when available.
+
+Codex direction:
+
+The Launcher should not only generate a prompt. It should eventually define a Codex work context.
+
+Future Codex task metadata should include:
+
+- Packet id.
+- Packet path.
+- Target repo.
+- Target branch.
+- Work folder, if needed.
+- Allowed files/areas.
+- Blocked files/areas.
+- Execution boundary.
+- Verification requirements.
+
+Future work folder direction:
+
+Use a work folder only when useful for planning, analysis, generated artifacts, migration notes, or handoff material.
+
+Recommended pattern:
+
+- Foundry-level work may use `work/<packet-id>/` in the Foundry repo.
+- Project-local work may use `work/<packet-id>/` in the target project repo.
+- Staging packets remain under `foundry/staging/` for Foundry/governance work or under project-local `staging/` later.
+
+The work folder must not replace:
+
+- The staging packet.
+- The Git branch.
+- The PR.
+- The review gate.
+
+Do not implement Linear integration in V0.5.
+Do not implement Codex task launching in V0.5.
+Do not create work folders in V0.5 unless they are documentation examples only.
+Do not add APIs, scripts, automation, UI, server code, or database files.
+
+## Progressive Planning Packs
+
+The future Foundry Launcher UI should not only create a basic intake packet. For larger projects, it should route the user into deeper planning packs before Linear or Codex execution.
+
+The Launcher should support progressive planning depth:
+
+1. Basic Staging Packet
+
+Used for small work packages and simple documentation/implementation tasks.
+
+2. Discovery Pack
+
+Used when the idea needs clarification before architecture or issue creation.
+
+3. Architecture Pack
+
+Used when the project needs technical/project architecture, repo/module structure, system boundaries, data flow, integrations, or ownership decisions.
+
+4. Business Functions Pack
+
+Used when the project needs business functions, user roles, operating workflows, service model, commercial logic, or organizational responsibilities defined.
+
+5. Goals and Outcomes Pack
+
+Used when success criteria, KPIs, outcomes, acceptance criteria, or project value need to be defined before implementation.
+
+6. UI / Workflow Sprint Pack
+
+Used when the project needs interface planning, screen flow, UX decisions, component groups, user journeys, or sprint sequencing.
+
+7. Issue Breakdown Pack
+
+Used only after the relevant scope is approved. It converts approved scope into Linear-ready issues.
+
+Important operating rule:
+
+Linear issues should be generated from approved Launcher / Discovery / Architecture scope.
+Linear should mirror the approved work; it should not be the primary place where project scope is invented.
+
+ChatGPT role:
+
+ChatGPT acts as the project architect and planning assistant during Discovery, Architecture, Business Functions, Goals/Outcomes, UI Sprint, and Issue Breakdown work.
+
+Codex role:
+
+Codex updates repository files, creates planning documents, and later executes scoped implementation tasks after approval.
+
+Dobromir role:
+
+Dobromir is required for direction/authority decisions, including business model, creative direction, client-facing scope, architecture ownership, new project/module creation, and autonomous automation scope.
+
+Future UI behavior:
+
+The Launcher should ask whether the packet requires deeper planning:
+
+- Discovery needed?
+- Architecture needed?
+- Business functions needed?
+- Goals/outcomes needed?
+- UI/workflow sprint planning needed?
+- Issue breakdown needed?
+
+The UI should use dropdowns/toggles for these decisions, not free text where possible.
+
+Do not implement these packs in V0.5.
+Only document this progressive planning model.
+
 ## Not In V0.5
 
 V0.5 does not build:
@@ -302,3 +538,7 @@ V0.5 does not build:
 - Deployment.
 - Production app routes.
 - Registry mutation.
+- Speech recognition.
+- Browser speech APIs.
+- Audio storage or processing.
+- Work folders.
