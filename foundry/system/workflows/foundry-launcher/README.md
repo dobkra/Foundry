@@ -49,3 +49,7 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 - [Staging Rules](../../../staging/STAGING_RULES.md)
 - [Packet Naming](../../../staging/PACKET_NAMING.md)
 - [Launcher Packet Reference Rules](launcher-packet-reference-rules.md)
+
+## Execution Delegation
+
+- [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md)

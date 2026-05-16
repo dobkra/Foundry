@@ -6,6 +6,8 @@ Launcher review gates prevent staged ideas from becoming registry entries or exe
 
 Technical readiness does not replace Dobromir approval.
 
+For approved technical execution steps, use the [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md) to decide when ChatGPT and Codex can continue without asking Dobromir.
+
 ## Intake Review Gate
 
 Purpose: Confirm that the staging intake is complete enough to classify.
