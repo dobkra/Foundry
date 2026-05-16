@@ -36,6 +36,10 @@ See [Lightweight Architecture Planning Framework](../../../standards/lightweight
 - [Issue Breakdown Pack Template](issue-breakdown-pack-template.md)
 - [Planning Pack Selection Guide](planning-pack-selection-guide.md)
 
+## Examples
+
+- [Foundry Launcher V0.7 First Full Project Initiation Example](../../../staging/foundry-launcher-v0.7-first-project-initiation-example/intake.md)
+
 ## Operating Boundary
 
 These templates do not create UI, automation, Linear issues, GitHub issues, Codex tasks, registry updates, deployments, app routes, databases, server code, or runtime Launcher behavior.
