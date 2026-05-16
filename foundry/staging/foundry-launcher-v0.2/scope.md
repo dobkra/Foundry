@@ -1,6 +1,8 @@
 # Scope
 
-Status: `draft`
+Status: `approved_for_execution`
+
+The approved V0.2 scope is limited to manual/documentation validation, staging index/status convention exploration, and packet reference rule documentation. Runtime implementation and automation remain blocked.
 
 ## Proposed V0.2 Scope
 

@@ -1,6 +1,6 @@
 # Foundry Launcher V0.2 - First Real Staging Packet
 
-Status: `draft`
+Status: `approved_for_execution`
 
 ## Intake Title
 
@@ -73,18 +73,18 @@ Required approvals:
 
 Blocked until:
 
-- Dobromir approves, parks, rejects, or requests revision to the V0.2 direction.
+- Automation, registry mutation, integrations, deployment, and runtime implementation remain blocked until separately approved.
 
 ## Suggested Next Step
 
-Dobromir reviews the packet and approves, parks, rejects, or revises the V0.2 direction.
+Proceed only with manual/documentation V0.2 validation work inside the approved boundary.
 
 ## Reviewer Decision
 
-Decision: `pending`
+Decision: `approved_for_execution`
 
 Reviewer: Dobromir
 
-Date: `[YYYY-MM-DD]`
+Date: `2026-05-16`
 
-Notes: `[Pending review]`
+Notes: `Approved only for manual/documentation V0.2 validation, staging index/status convention exploration, and packet reference rule documentation. Automation, integrations, registry mutation, deployment, server, database, UI, CLI, app routes, and Codex self-launching remain blocked.`

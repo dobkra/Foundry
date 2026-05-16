@@ -1,6 +1,6 @@
 # Approval
 
-Status: `needs_review`
+Status: `approved_for_execution`
 
 ## Intake Review Gate
 

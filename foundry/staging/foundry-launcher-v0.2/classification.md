@@ -1,6 +1,8 @@
 # Classification
 
-Status: `draft`
+Status: `approved_for_execution`
+
+This classification is approved as `work_package` for the narrow manual/documentation V0.2 validation boundary only.
 
 ## Selected Classification
 
