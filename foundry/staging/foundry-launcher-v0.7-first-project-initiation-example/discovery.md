@@ -10,7 +10,15 @@
 
 ## Discovery status
 
-`needs_review`
+`approved_for_manual_execution`
+
+## Approval decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The discovery content may be used as planning guidance only. Real module creation, UI implementation, automation, integrations, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Raw idea summary
 
@@ -70,7 +78,9 @@ A future UI/control entry point guides intake, classification, parent context, p
 - Whether Linear integration should start with issue/project creation.
 - Whether Codex work folders should be default or optional.
 - Whether registry-backed selectors should be read-only first.
-- Whether `new_module` remains the right classification after review.
+- Whether `new_module` remains the right classification for future real implementation.
+
+These are open for a future packet.
 
 ## Source materials
 
@@ -81,18 +91,20 @@ A future UI/control entry point guides intake, classification, parent context, p
 
 ## Questions for Dobromir
 
-- Should this V0.7 example become the canonical project-initiation reference?
-- Should the future UI be part of Foundry Control Center or standalone?
-- Should `new_module` remain the right classification?
+- Should the future UI be part of Foundry Control Center or standalone? Open for future packet.
+- Should a future real implementation remain a module or become a separate project? Open for future packet.
+- Should Codex work folders be default or optional? Open for future packet.
 
 ## Decision needed?
 
-`yes`
+`no` for using V0.7 as a documentation/manual reference example.
+
+`yes` for any future module creation, UI implementation, automation, integration, registry, deployment, or Codex execution work.
 
 ## Recommended next planning pack
 
-`architecture`
+Use this as reference guidance only until a future approved packet defines the next step.
 
 ## Approval notes
 
-`[Pending Dobromir review]`
+Approved for documentation/manual reference use only. All real implementation and external-system setup remains blocked.

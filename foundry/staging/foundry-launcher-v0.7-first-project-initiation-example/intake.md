@@ -1,10 +1,8 @@
-# Foundry Launcher V0.7 First Full Project Initiation Example
+# Intake
 
-Status: `needs_review`
+Title: Foundry Launcher V0.7 First Full Project Initiation Example
 
-## Intake Title
-
-Foundry Launcher V0.7 First Full Project Initiation Example
+Status: `approved_for_manual_execution`
 
 ## Raw Idea
 
@@ -12,42 +10,33 @@ Test the full Foundry Launcher process by initiating a future Launcher UI / Foun
 
 ## Requested Outcome
 
-Create a complete example packet showing how a larger project moves from intake to discovery, architecture, business functions, goals, UI workflow, and issue breakdown.
+A complete example packet showing how a larger project moves from intake to discovery, architecture, business functions, goals, UI workflow, and issue breakdown.
 
 ## Classification Candidate
 
 `new_module`
 
-## Existing Parent Project/Workflow
+## Parent Project
 
-Parent project: Foundry
+Foundry
 
-Parent workflow/module: Foundry Launcher
+## Parent Workflow/Module
 
-## Business/Project Context
+Foundry Launcher
 
-This packet is a documentation-only example of how a larger Foundry project or module could be initiated before any Linear issue creation, GitHub implementation, Codex execution, UI build, automation, or registry mutation.
+## Context
 
-The example project is a possible future Foundry Launcher UI / Foundry Control Center entry point inside the existing Foundry system.
+V0.7 demonstrates the full Foundry Launcher initiation process using the progressive planning pack model.
 
-## Scope Boundaries
+The example concerns a possible future Launcher UI / Foundry Control Center entry point inside the existing Foundry system. It is treated as a `new_module` reference example only and does not approve real module creation.
 
-In scope:
+## Approval Decision
 
-- Demonstrate a full project-initiation packet.
-- Fill the progressive planning packs as a realistic example.
-- Show how issue breakdown can be proposed without creating Linear issues.
-- Keep the packet-first / prompt-second model intact.
-- Keep all runtime implementation blocked.
+Reviewer: Dobromir
 
-Out of scope:
+Decision date: `2026-05-16`
 
-- Real module creation.
-- Real project repository creation.
-- UI implementation.
-- Automation.
-- Linear/GitHub/Codex integration.
-- Registry mutation.
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. Real module creation, UI implementation, automation, Linear/GitHub integration, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Non-Goals
 
@@ -57,36 +46,24 @@ Out of scope:
 - No Linear issue creation.
 - No GitHub issue creation.
 - No Codex launch.
+- No Codex self-launching.
 - No database/server/deployment.
 - No registry mutation.
 - No real project/module creation.
 - No DK Arkitekter OS repo changes.
 
-## Risks/Unknowns
-
-- The example should be realistic enough to guide future project initiation without being mistaken for actual module approval.
-- The `new_module` classification may need Dobromir review before it becomes the preferred classification for the future Launcher UI / Control Center entry point.
-- The future UI may later belong inside Foundry Control Center or may need a separate project structure.
-
-## Approval Requirements
-
-Required approvals:
-
-- Intake Review Gate approval.
-- Classification Approval Gate approval for `new_module` as an example classification.
-- High-Level Decision Gate approval before this becomes a canonical project-initiation reference.
-- Separate approval before any real module creation, registry update, UI implementation, automation, integration, deployment, or Codex self-launching.
-
 ## Suggested Next Step
 
-Dobromir reviews whether this example should become the reference model for future project initiation.
+Use this V0.7 packet as a documentation/manual reference example for future project-initiation packets.
+
+Any future real module creation, UI implementation, automation, integration, registry, deployment, or Codex execution work requires a separate approved packet.
 
 ## Reviewer Decision
 
-Decision: `pending`
+Decision: `approved_for_manual_execution`
 
 Reviewer: Dobromir
 
-Date: `[YYYY-MM-DD]`
+Date: `2026-05-16`
 
-Notes: `[Pending review]`
+Notes: Approved only as a documentation/manual project-initiation reference example. It may guide future packets and planning discussions, but it does not authorize real module creation, UI implementation, app routes, automation, Linear/GitHub integration, Codex task launch, registry mutation, deployment, server/database work, or DK Arkitekter OS repo changes.

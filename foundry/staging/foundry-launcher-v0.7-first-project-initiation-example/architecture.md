@@ -10,7 +10,15 @@
 
 ## Architecture status
 
-`needs_review`
+`approved_for_manual_execution`
+
+## Approval decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The architecture content may be used as planning guidance only. Real module creation, UI implementation, automation, integrations, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Target project/repo
 
@@ -24,6 +32,8 @@ Foundry / Foundry Launcher
 
 Foundry Launcher UI / Foundry Control Center entry point
 
+This possible module is not created or approved by this packet.
+
 ## System boundaries
 
 - Staging packets.
@@ -36,6 +46,8 @@ Foundry Launcher UI / Foundry Control Center entry point
 
 The possible future module would sit inside Foundry as a Launcher entry point or Foundry Control Center surface. It would not create a separate project or repository unless separately approved.
 
+Whether a future real implementation should remain a module or become a separate project is open for a future packet.
+
 ## Data/input/output flow
 
 1. User input / selections.
@@ -45,6 +57,8 @@ The possible future module would sit inside Foundry as a Launcher entry point or
 5. Optional future Codex task after approval.
 6. GitHub PR record for repository changes.
 
+This flow is a reference example only. It does not authorize integrations or automation.
+
 ## Integrations
 
 Future candidates only:
@@ -53,6 +67,8 @@ Future candidates only:
 - Linear project/issue creation after approval.
 - Codex task context after approval.
 - GitHub PR linkage after implementation work begins.
+
+All integrations remain blocked unless separately approved.
 
 ## Storage/database needs
 
@@ -77,15 +93,17 @@ Possible future automation candidates include packet generation, work folder cre
 
 No local UI, server, deployment, or runtime route is approved by this packet.
 
-Future architecture must decide whether the UI starts as a local tool, web app, Foundry Control Center screen, or standalone surface.
+Future architecture must decide whether the UI starts as a local tool, web app, Foundry Control Center screen, or standalone surface. This is open for a future packet.
 
 ## File/folder structure proposal
 
-Documentation-only example:
+Documentation/manual reference example:
 
 - `foundry/staging/foundry-launcher-v0.7-first-project-initiation-example/`
 - Planning pack files inside the packet folder.
 - Future implementation file structure remains undecided.
+
+No work folder creation is approved.
 
 ## Dependencies
 
@@ -101,6 +119,8 @@ Future dependencies must be proposed in a separate approved implementation-readi
 - Linear/Codex integration could turn planning convenience into automation before approval.
 
 ## Architecture decisions required
+
+Open for future packet:
 
 - Local UI vs web app.
 - Part of Foundry Control Center vs standalone.
@@ -120,4 +140,4 @@ Future dependencies must be proposed in a separate approved implementation-readi
 
 ## Approval notes
 
-`[Pending Dobromir review]`
+Approved for documentation/manual reference use only. All real implementation and external-system setup remains blocked.

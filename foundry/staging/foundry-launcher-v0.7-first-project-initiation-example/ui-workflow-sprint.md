@@ -10,7 +10,15 @@
 
 ## UI/workflow status
 
-`needs_review`
+`approved_for_manual_execution`
+
+## Approval decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The UI/workflow content may be used as planning guidance only. Real module creation, UI implementation, automation, integrations, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Target users
 
@@ -26,6 +34,8 @@
 - Review generated packet summary.
 - Decide whether work is ready for review, parked, rejected, or later execution setup.
 - Generate future prompt/issue/task material only after approval.
+
+These journeys are reference examples only. They do not authorize UI implementation.
 
 ## Screen flow
 
@@ -135,6 +145,8 @@ The result step should show:
 - Copy Codex prompt.
 - Future Linear/Codex actions blocked until approved.
 
+This result model is reference guidance only and does not authorize UI, automation, or integration work.
+
 ## Sprint grouping
 
 Future hypothetical only:
@@ -147,6 +159,8 @@ Future hypothetical only:
 These sprint groups are examples only and do not authorize implementation.
 
 ## Visual/creative decisions required
+
+Open for future packet:
 
 - Whether the future UI is Foundry Control Center or standalone.
 - How dense or guided the control panel should feel.
@@ -169,4 +183,4 @@ These sprint groups are examples only and do not authorize implementation.
 
 ## Approval notes
 
-`[Pending Dobromir review]`
+Approved for documentation/manual reference use only. All real implementation and external-system setup remains blocked.

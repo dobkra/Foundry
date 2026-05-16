@@ -67,6 +67,8 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 
 ## V0.7 Example
 
+V0.7 provides the approved documentation/manual reference example for full project initiation.
+
 - [First Full Project Initiation Example](../../../staging/foundry-launcher-v0.7-first-project-initiation-example/intake.md)
 
 ## Execution Delegation

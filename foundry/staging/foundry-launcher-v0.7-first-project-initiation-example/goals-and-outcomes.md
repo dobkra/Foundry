@@ -10,7 +10,15 @@
 
 ## Goals/outcomes status
 
-`needs_review`
+`approved_for_manual_execution`
+
+## Approval decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The goals/outcomes content may be used as planning guidance only. Real module creation, UI implementation, automation, integrations, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Primary goal
 
@@ -38,7 +46,7 @@ Create a reference example for full project initiation.
 - A complete example packet exists.
 - The packet demonstrates Discovery, Architecture, Business Functions, Goals/Outcomes, UI/Workflow Sprint, and Issue Breakdown planning.
 - The example makes approval boundaries clear.
-- The example can be reviewed as a candidate reference model.
+- The example can be used as a documentation/manual reference model.
 
 ## Success criteria
 
@@ -72,6 +80,7 @@ Create a reference example for full project initiation.
 - Related docs link to the example packet.
 - No runtime work is added.
 - Future decisions are clearly listed.
+- V0.7 status is normalized as `approved_for_manual_execution`.
 
 ## Risks to outcome
 
@@ -85,16 +94,18 @@ Create a reference example for full project initiation.
 - Planning pack templates.
 - Lightweight Architecture Planning Framework.
 - Technical execution delegation rules.
-- Dobromir review.
+- Future Dobromir review for any implementation, automation, integration, registry, deployment, or module-creation decision.
 
 ## Review cadence
 
-Review once as a V0.7 packet before deciding whether it becomes a canonical reference.
+Use as a documentation/manual reference example. Future implementation direction requires a separate packet.
 
 ## Decision needed?
 
-`yes`
+`no` for using V0.7 as a documentation/manual reference example.
+
+`yes` for any future module creation, UI implementation, automation, integration, registry, deployment, or Codex execution work.
 
 ## Approval notes
 
-`[Pending Dobromir review]`
+Approved for documentation/manual reference use only. All real implementation and external-system setup remains blocked.
