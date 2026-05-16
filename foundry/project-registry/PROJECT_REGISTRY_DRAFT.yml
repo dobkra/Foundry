@@ -2,9 +2,10 @@ projects:
   - id: foundry
     name: Foundry
     type: global-execution-factory
-    target_repo: https://github.com/dobkra/foundry
-    status: planned
-    current_location: current repo transitional foundry folders
+    current_repo: dobkra/Foundry
+    target_repo: dobkra/Foundry
+    status: active
+    role: active global execution factory
     owns:
       - standards
       - templates
@@ -17,10 +18,11 @@ projects:
 
   - id: dk-arkitekter-os
     name: DK Arkitekter OS
-    type: business-platform
-    current_repo: https://github.com/dobkra/dk-arkitekter-os
-    target_repo: https://github.com/dobkra/dk-arkitekter-os
+    type: registered-business-os
+    current_repo: dobkra/dk-arkitekter-os
+    target_repo: dobkra/dk-arkitekter-os
     status: active
+    role: active registered business OS project/example, not default parent
     owns:
       - growth-and-sales
       - production-tools
@@ -44,8 +46,14 @@ branches:
       - local-research-tools
       - small-utilities
 
+archive:
+  repo: dobkra/archive
+  status: cold_storage
+  role: cold storage / historical material
+  action: preserve historical material; do not treat as active execution repo
+
 archive_candidates:
-  - repo: https://github.com/dobkra/dkarkitekter-growth-sales-os
+  - repo: dobkra/dkarkitekter-growth-sales-os
     reason: similar name, likely duplicate/stale
     action: document only, do not delete
 

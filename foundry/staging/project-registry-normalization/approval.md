@@ -1,35 +1,66 @@
 # Approval
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Review Decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved for technical registry normalization reflecting already approved repo split facts. No new project/module creation, ownership change, automation, UI, Linear/GitHub integration, Codex self-launching, deployment, or DK Arkitekter OS repo changes are approved.
 
 ## Intake Review Gate
 
-State: pending Dobromir review.
+State: approved.
 
-Notes: The intake stages project registry normalization before registry files are changed.
+Notes: The intake is approved for technical registry normalization only.
 
 ## Classification Approval Gate
 
-State: pending Dobromir review.
+State: approved.
 
 Selected classification: `work_package`
 
-Notes: The classification is proposed because Project Registry already exists inside Foundry and this is a scoped cleanup package.
+Notes: Project Registry already exists inside Foundry and this is a scoped cleanup package.
 
 ## Registry Update Gate
 
-State: blocked.
+State: approved for technical normalization only.
 
-Notes: No registry mutation is allowed in this packet.
+Notes: Registry documentation and draft YAML may be normalized to reflect already approved repo split facts. New project/module creation, ownership changes, scope changes, parent/child architecture changes, and approval model changes remain blocked.
 
 ## Execution Setup Gate
 
-State: blocked.
+State: approved for documentation/YAML cleanup only.
 
-Notes: No Linear setup, GitHub issue setup, Codex execution beyond this staging-packet PR, automation, deployment, registry mutation, UI, CLI, database, server, or app-route work is authorized.
+Notes: No Linear setup, GitHub issue setup, Codex self-launching, automation, deployment, UI, CLI, database, server, app-route work, or DK Arkitekter OS repo change is authorized.
 
 ## High-Level Decision Gate
 
-State: pending for registry normalization decision.
+State: approved for already approved repo split facts only.
 
-Notes: Dobromir approval is required before normalizing registry files or changing durable registry structure.
+Notes: No new direction/authority decision is made by this cleanup.
+
+## Boundary
+
+Allowed:
+
+- Technical registry documentation cleanup.
+- Draft YAML normalization.
+- Repo casing cleanup.
+- Status label alignment with approved repo split facts.
+- Lightweight staging packet references where useful.
+
+Blocked:
+
+- New project creation.
+- New module creation.
+- Ownership/scope changes.
+- Automation.
+- UI.
+- Linear/GitHub integration.
+- Codex self-launching.
+- Deployment.
+- Server/database/app routes.
+- DK Arkitekter OS repo changes.

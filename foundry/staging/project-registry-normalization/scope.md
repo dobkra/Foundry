@@ -1,25 +1,38 @@
 # Scope
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
-## Proposed Future Normalization Scope
+## Approval Decision
 
-The future Project Registry Normalization work package may include:
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved for technical registry normalization reflecting already approved repo split facts. No new project/module creation, ownership change, automation, UI, Linear/GitHub integration, Codex self-launching, deployment, or DK Arkitekter OS repo changes are approved.
+
+## Approved Normalization Scope
+
+The Project Registry Normalization work package may update registry documentation and draft YAML to reflect the completed repo split and current Foundry operating model.
+
+Approved cleanup:
 
 - Review current registry draft.
 - Correct active repo names and casing.
 - Clarify Foundry as active global execution factory.
-- Clarify DK Arkitekter OS as active registered business OS project.
+- Clarify DK Arkitekter OS as active registered business OS project/example.
 - Clarify archive as cold storage / historical material.
 - Remove or resolve transitional wording.
 - Preserve progressive complexity principle.
 - Avoid making DK Arkitekter OS the default parent.
 - Avoid inventing new architecture layers.
+- Reference approved staging packets where useful.
 
 ## Explicit Non-Goals
 
 - No automation.
-- No registry mutation in this packet.
+- No new project creation.
+- No new module creation.
+- No ownership/scope change beyond already approved repo split facts.
 - No Linear issue creation.
 - No GitHub issue creation.
 - No database.
@@ -31,16 +44,19 @@ The future Project Registry Normalization work package may include:
 
 ## Constraints
 
-- This packet is documentation-only.
-- Registry files must not be changed by this packet.
-- Project records must not be created by this packet.
+- This is technical registry cleanup only.
 - Foundry remains the parent platform.
 - DK Arkitekter OS remains one registered business OS project/example, not the default parent.
-- Archive remains cold storage / historical material unless Dobromir approves different registry wording.
+- Archive remains cold storage / historical material.
+- Simple projects should not be forced into advanced architecture layers.
+- Future durable registry structure changes still require appropriate Launcher approval.
 
-## Acceptance Criteria For Review
+## Acceptance Criteria
 
-- Dobromir can approve, reject, park, or revise the proposed normalization scope.
-- Registry mutation remains blocked.
-- Open decisions are visible before any future registry edit.
-- The future scope preserves progressive complexity and avoids unnecessary architecture layers.
+- Foundry is represented as the active global execution factory.
+- DK Arkitekter OS is represented as an active registered business OS project/example, not the default parent.
+- Archive is represented as cold storage / historical material.
+- Repo names and casing are normalized.
+- No new project/module is created.
+- No ownership or scope change is introduced.
+- No automation, UI, integration, deployment, or runtime work is added.
