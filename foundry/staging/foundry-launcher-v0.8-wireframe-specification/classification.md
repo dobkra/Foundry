@@ -1,10 +1,18 @@
 # Classification
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
 ## Selected Classification
 
 `work_package`
+
+## Classification Approval
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual Foundry Launcher wireframe specification. UI implementation, React components, app routes, code, scripts, automation, Linear/GitHub integration, Codex task launch, registry mutation, deployment, server/database work, visual mockups, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Classification Rationale
 
@@ -40,18 +48,31 @@ The registry may be referenced for read-only future selector behavior, but V0.8 
 
 ## Execution Eligibility
 
-Documentation/specification work only until Dobromir approval.
+Allowed:
+
+- Use V0.8 as documentation/manual wireframe guidance.
+- Use the 10-screen flow as reference.
+- Use state and validation rules as reference.
+- Use result/handoff model as reference.
 
 Blocked:
 
 - UI implementation.
 - React components.
 - App routes.
+- Code.
+- Scripts.
 - Automation.
+- Linear issue creation.
+- GitHub issue creation.
 - Linear/GitHub integration.
+- Codex task launch.
 - Codex self-launching.
+- Work folder creation.
+- Registry mutation.
 - Database.
 - Server.
+- Dependencies.
 - Deployment.
-- Registry mutation.
 - DK Arkitekter OS repo changes.
+- Visual mockups or image generation.
