@@ -7,6 +7,7 @@ V0.3 remains manual. This index does not create folders, update Linear, update G
 | Packet id | Packet title | Classification | Status | Parent project/workflow/module | Approval state | Execution boundary | Packet folder |
 |---|---|---|---|---|---|---|---|
 | `foundry-launcher-v0.2` | Foundry Launcher V0.2 - First Real Staging Packet | `work_package` | `approved_for_execution` | Foundry / Foundry Launcher | Approved for narrow manual/documentation validation | Manual/documentation V0.2 validation only; automation and runtime work blocked. | [foundry-launcher-v0.2/](foundry-launcher-v0.2/) |
+| `project-registry-normalization` | Project Registry Normalization | `work_package` | `needs_review` | Foundry / Project Registry | Pending Dobromir review | Documentation-only staging packet; registry mutation blocked. | [project-registry-normalization/](project-registry-normalization/) |
 
 ## Index Rules
 
