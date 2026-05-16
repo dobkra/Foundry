@@ -6,6 +6,8 @@ These rules define how future Codex execution prompts should reference approved 
 
 V0.3 remains manual. These rules do not introduce automation, UI, CLI, Linear integration, GitHub integration, Codex self-launching, database, server, deployment, app routes, dependencies, or project registry mutation.
 
+For technical execution inside an approved packet, use the [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md) to decide whether Dobromir input is required.
+
 ## Approval-Gated Work
 
 Codex execution prompts for approval-gated work should reference the relevant Launcher packet id and path.
