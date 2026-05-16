@@ -71,6 +71,10 @@ V0.7 provides the approved documentation/manual reference example for full proje
 
 - [First Full Project Initiation Example](../../../staging/foundry-launcher-v0.7-first-project-initiation-example/intake.md)
 
+## V0.8 Wireframe
+
+- [Wireframe Specification](launcher-wireframe-specification.md)
+
 ## Execution Delegation
 
 - [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md)

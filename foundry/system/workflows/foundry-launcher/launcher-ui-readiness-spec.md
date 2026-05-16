@@ -250,7 +250,7 @@ The Result step must not directly:
 
 unless a later approved implementation explicitly allows those integrations.
 
-The "Copy Codex Prompt" action should generate a prompt from the packet contents and approved execution boundary. It must not replace the staging packet.
+The Copy Codex Prompt action should generate a prompt from the packet contents and approved execution boundary. It must not replace the staging packet.
 
 Show next action:
 
@@ -548,6 +548,10 @@ V0.6 defines reusable Markdown templates for the progressive planning pack model
 - [UI / Workflow Sprint Pack Template](../../../templates/launcher/planning-packs/ui-workflow-sprint-pack-template.md)
 - [Issue Breakdown Pack Template](../../../templates/launcher/planning-packs/issue-breakdown-pack-template.md)
 - [Planning Pack Selection Guide](../../../templates/launcher/planning-packs/planning-pack-selection-guide.md)
+
+## V0.8 Wireframe Specification
+
+- [Launcher Wireframe Specification](launcher-wireframe-specification.md)
 
 ## Not In V0.5
 
