@@ -65,6 +65,10 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 - [Progressive Planning Pack Templates](../../../templates/launcher/planning-packs/README.md)
 - [Lightweight Architecture Planning Framework](../../../standards/lightweight-architecture-planning-framework.md)
 
+## V0.7 Example
+
+- [First Full Project Initiation Example](../../../staging/foundry-launcher-v0.7-first-project-initiation-example/intake.md)
+
 ## Execution Delegation
 
 - [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md)
