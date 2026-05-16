@@ -10,7 +10,15 @@
 
 ## Issue breakdown status
 
-`needs_review`
+`approved_for_manual_execution`
+
+## Approval decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The issue breakdown may be used as a planning example only. Real module creation, UI implementation, automation, Linear/GitHub integration, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Important Rule
 
@@ -20,7 +28,9 @@ Issue Breakdown must not invent new scope. These proposed issues derive from the
 
 ## Approved source scope
 
-No implementation scope is approved yet.
+V0.7 is approved only as a documentation/manual reference example.
+
+No implementation scope is approved.
 
 Source planning references in this example:
 
@@ -34,6 +44,8 @@ Source planning references in this example:
 
 Foundry / Foundry Launcher
 
+This is a planning example only and does not authorize Linear setup.
+
 ## Target repo
 
 `dobkra/Foundry`
@@ -41,6 +53,8 @@ Foundry / Foundry Launcher
 ## Target branch naming pattern
 
 `feature/<approved-packet-id-or-issue-slug>`
+
+This branch pattern is an example only.
 
 ## Issue groups / epics
 
@@ -68,7 +82,7 @@ Acceptance criteria:
 
 Dependencies:
 
-- Dobromir approval of V0.7 direction.
+- Future Dobromir approval of implementation-readiness direction.
 
 Blocked work:
 
@@ -77,11 +91,11 @@ Blocked work:
 - Automation.
 - Integrations.
 
-Codex eligibility: blocked until approval.
+Codex eligibility: blocked until separate approval.
 
-Linear eligibility: blocked until approval.
+Linear eligibility: blocked until separate approval.
 
-GitHub eligibility: documentation-only PRs allowed after approval.
+GitHub eligibility: documentation-only PRs for future approved packets only.
 
 ### Wireframe specification
 
@@ -106,11 +120,11 @@ Blocked work:
 - Design system changes.
 - App routes.
 
-Codex eligibility: blocked until approval.
+Codex eligibility: blocked until separate approval.
 
-Linear eligibility: blocked until approval.
+Linear eligibility: blocked until separate approval.
 
-GitHub eligibility: documentation-only PRs allowed after approval.
+GitHub eligibility: documentation-only PRs for future approved packets only.
 
 ### Packet generator model
 
@@ -137,11 +151,11 @@ Blocked work:
 - Automation.
 - File-writing UI.
 
-Codex eligibility: blocked until approval.
+Codex eligibility: blocked until separate approval.
 
-Linear eligibility: blocked until approval.
+Linear eligibility: blocked until separate approval.
 
-GitHub eligibility: documentation-only PRs allowed after approval.
+GitHub eligibility: documentation-only PRs for future approved packets only.
 
 ### Registry selector model
 
@@ -167,11 +181,11 @@ Blocked work:
 - Database.
 - Runtime selector implementation.
 
-Codex eligibility: blocked until approval.
+Codex eligibility: blocked until separate approval.
 
-Linear eligibility: blocked until approval.
+Linear eligibility: blocked until separate approval.
 
-GitHub eligibility: documentation-only PRs allowed after approval.
+GitHub eligibility: documentation-only PRs for future approved packets only.
 
 ### Result page handoff model
 
@@ -198,11 +212,11 @@ Blocked work:
 - GitHub issue creation.
 - Automation.
 
-Codex eligibility: blocked until approval.
+Codex eligibility: blocked until separate approval.
 
-Linear eligibility: blocked until approval.
+Linear eligibility: blocked until separate approval.
 
-GitHub eligibility: documentation-only PRs allowed after approval.
+GitHub eligibility: documentation-only PRs for future approved packets only.
 
 ### Linear/Codex integration planning
 
@@ -231,11 +245,19 @@ Blocked work:
 - Automation.
 - Deployment.
 
-Codex eligibility: blocked until approval.
+Codex eligibility: blocked until separate approval.
 
-Linear eligibility: blocked until approval.
+Linear eligibility: blocked until separate approval.
 
-GitHub eligibility: documentation-only PRs allowed after approval.
+GitHub eligibility: documentation-only PRs for future approved packets only.
+
+## Future Decisions Still Open
+
+Open for future packet:
+
+- Whether future Linear integration should create projects first or issues first.
+- Whether Codex work folders should be default or optional.
+- Whether V0.8 should be wireframe specification or implementation-readiness.
 
 ## Verification requirements
 
@@ -246,4 +268,4 @@ GitHub eligibility: documentation-only PRs allowed after approval.
 
 ## Approval notes
 
-`[Pending Dobromir review]`
+Approved for documentation/manual reference use only. All real implementation and external-system setup remains blocked.

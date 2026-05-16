@@ -1,10 +1,18 @@
 # Classification
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
 ## Selected Classification
 
 `new_module`
+
+## Classification Approval
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The `new_module` classification is approved only for the V0.7 reference example. It does not create or approve a real module.
 
 ## Classification Rationale
 
@@ -19,6 +27,8 @@ This packet does not approve actual module creation. It only demonstrates how a 
 This is not a `new_project` because it does not start a new independent Foundry project or repository.
 
 The parent context already exists: Foundry / Foundry Launcher.
+
+Whether a future real implementation should remain a module or become a separate project remains open for a future packet.
 
 ## Why This Is Not `work_package`
 
@@ -62,19 +72,26 @@ This packet does not authorize Linear issue creation, GitHub issue creation, Cod
 
 Allowed:
 
-- Documentation-only example initiation packet.
-- Manual planning pack example content.
-- Proposed issue breakdown as documentation only.
+- Use V0.7 as a reference example.
+- Use filled planning packs as documentation/manual guidance.
+- Use proposed issue breakdown as a planning example only.
 
 Blocked:
 
 - Real module creation.
 - UI implementation.
+- React components.
 - App routes.
 - Automation.
+- Linear issue creation.
+- GitHub issue creation.
 - Linear/GitHub integration.
+- Codex task launch.
 - Codex self-launching.
+- Work folder creation.
+- Registry mutation.
 - Database.
 - Server.
+- Dependencies.
 - Deployment.
-- Registry mutation.
+- DK Arkitekter OS repo changes.

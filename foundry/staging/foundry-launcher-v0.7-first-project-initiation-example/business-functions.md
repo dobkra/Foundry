@@ -10,7 +10,15 @@
 
 ## Business function status
 
-`needs_review`
+`approved_for_manual_execution`
+
+## Approval decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual reference example for full Foundry Launcher project initiation. The business functions content may be used as planning guidance only. Real module creation, UI implementation, automation, integrations, Codex task launch, registry mutation, deployment, server/database work, and DK Arkitekter OS changes remain blocked unless separately approved.
 
 ## Business objective
 
@@ -47,6 +55,8 @@ Foundry acts as the execution factory.
 
 The Launcher acts as the front door that converts loose ideas into structured, reviewable packets before execution setup.
 
+This service model is approved here only as reference-example documentation.
+
 ## Commercial logic
 
 No pricing or commercial model is changed by this packet.
@@ -77,6 +87,8 @@ No pricing or commercial model is changed by this packet.
 - Review summary.
 - Proposed issue breakdown.
 - Future Codex prompt only after approval.
+
+These outputs are reference examples only. They do not authorize future execution setup.
 
 ## Manual steps
 
@@ -110,10 +122,12 @@ Future dictation or external integrations may require privacy/security review. T
 
 ## Business decisions required
 
-- Should this V0.7 example become the canonical project-initiation reference?
+Open for future packet:
+
 - Should the future UI live in Foundry Control Center or standalone?
 - Should Linear/Codex integration remain delayed until a later approved packet?
+- Should future Linear integration create projects first or issues first?
 
 ## Approval notes
 
-`[Pending Dobromir review]`
+Approved for documentation/manual reference use only. All real implementation and external-system setup remains blocked.
