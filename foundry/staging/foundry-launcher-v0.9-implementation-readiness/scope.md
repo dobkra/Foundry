@@ -19,7 +19,7 @@ V0.9 is approved only as documentation/manual implementation-readiness planning 
 
 ## Out Of Scope
 
-- Building the UI.
+- UI implementation or UI build.
 - Creating React components.
 - Adding app routes.
 - Adding code or scripts.
@@ -37,7 +37,7 @@ V0.9 is approved only as documentation/manual implementation-readiness planning 
 
 V0.9 may prepare the first real implementation path, but it does not approve the implementation itself.
 
-A separate implementation packet is still required before any UI, local file-output behavior, app route, code, integration, automation, deployment, registry mutation, or Codex launch is created.
+A separate implementation packet is still required before any UI implementation, local file-output behavior, app route, code, integration, automation, deployment, registry mutation, or Codex launch is created.
 
 ## Fast-Track Boundary
 
