@@ -8,7 +8,9 @@ It belongs to Foundry System Layer and does not belong inside DK Arkitekter OS.
 
 A minimal local/internal app shell exists at the repository root using Vite, React, and TypeScript.
 
-The shell is not deployed and is not client-facing. It does not include authentication, automation, external integrations, registry mutation, or a completed Launcher wizard.
+The shell is not deployed and is not client-facing. It does not include authentication, automation, external integrations, registry mutation, or public routes.
+
+The Foundry Launcher minimal wizard module now exists inside the shell as a local/internal UI product surface. It uses local React state and copyable Markdown output only.
 
 ## Run Locally
 
@@ -39,11 +41,36 @@ npm run preview
 
 ## Current Modules
 
-- Foundry Launcher: coming next. The app shell shows a placeholder module card only.
+- Foundry Launcher: minimal local wizard module available for visual review.
+
+## V1.1 Limitations
+
+- Uses local in-memory state only.
+- Generates copyable Markdown output only.
+- Does not write generated packet files to disk.
+- Does not mutate the project registry.
+- Does not create Linear or GitHub issues.
+- Does not launch Codex.
+- Does not integrate external systems.
+- Does not deploy.
+
+## Visual Review
+
+Foundry Launcher V1.1 is a UI/product PR.
+
+Dobromir should review the running local UI once before final merge for:
+
+- screen flow
+- density
+- button placement
+- field grouping
+- whether it feels like a control panel
+
+Technical implementation details do not require Dobromir review.
 
 ## What Remains Blocked
 
-- Full Foundry Launcher wizard.
+- File generation from the UI.
 - Linear issue creation.
 - GitHub issue creation.
 - Codex launch or self-launching.
@@ -61,4 +88,4 @@ npm run preview
 
 ## Next Intended Step
 
-Build the minimal Foundry Launcher wizard module inside this shell, still local/internal only and without external integrations.
+After visual review, decide whether the next approved packet should add local Markdown file generation, registry-backed read-only selectors, or full Approval Categories and Execution Permissions steps.

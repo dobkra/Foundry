@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import LauncherWizard from './modules/launcher/LauncherWizard';
+
 type ModuleCard = {
   title: string;
   status: string;
@@ -10,10 +13,10 @@ type ModuleCard = {
 const modules: ModuleCard[] = [
   {
     title: 'Foundry Launcher',
-    status: 'Coming next',
+    status: 'Available',
     purpose: 'Start and stage Foundry work before execution.',
-    currentStatus: 'UI shell ready; Launcher module not implemented yet.',
-    nextStep: 'Build minimal Launcher wizard module.',
+    currentStatus: 'Minimal local wizard module ready for visual review.',
+    nextStep: 'Use the wizard to prepare copyable packet summaries and prompt placeholders.',
     blocked: [
       'Linear/GitHub/Codex integration',
       'automation',
@@ -32,6 +35,12 @@ const blockedCapabilities = [
 ];
 
 function App() {
+  const [activeScreen, setActiveScreen] = useState<'home' | 'launcher'>('home');
+
+  if (activeScreen === 'launcher') {
+    return <LauncherWizard onBackHome={() => setActiveScreen('home')} />;
+  }
+
   return (
     <main className="shell" aria-labelledby="app-title">
       <section className="hero" aria-describedby="app-subtitle">
@@ -83,6 +92,14 @@ function App() {
                   ))}
                 </ul>
               </div>
+
+              <button
+                className="primary-button"
+                onClick={() => setActiveScreen('launcher')}
+                type="button"
+              >
+                Open Launcher wizard
+              </button>
             </article>
           ))}
         </div>
