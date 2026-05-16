@@ -56,6 +56,10 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 - [Launcher Decision Update Template](../../../templates/launcher/launcher-decision-update-template.md)
 - [Launcher Status Table Template](../../../templates/launcher/launcher-status-table-template.md)
 
+## Fast Track Review
+
+- [Launcher Fast Track Review Rules](launcher-fast-track-review-rules.md)
+
 ## V0.5 UI Readiness
 
 - [Launcher UI Readiness Specification](launcher-ui-readiness-spec.md)
@@ -76,6 +80,10 @@ V0.7 provides the approved documentation/manual reference example for full proje
 V0.8 provides the approved documentation/manual wireframe specification for the future Launcher UI.
 
 - [Wireframe Specification](launcher-wireframe-specification.md)
+
+## V0.9 Implementation Readiness
+
+- [V0.9 Implementation Readiness Packet](../../../staging/foundry-launcher-v0.9-implementation-readiness/implementation-readiness.md)
 
 ## Execution Delegation
 

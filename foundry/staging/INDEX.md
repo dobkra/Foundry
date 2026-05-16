@@ -2,7 +2,7 @@
 
 This is the manual index of Foundry Launcher staging packets.
 
-V0.3 through V0.8 remain manual. This index does not create folders, update Linear, update GitHub issues, trigger Codex, mutate the project registry, or enable automation.
+V0.3 through V0.9 remain manual. This index does not create folders, update Linear, update GitHub issues, trigger Codex, mutate the project registry, or enable automation.
 
 | Packet id | Packet title | Classification | Status | Parent project/workflow/module | Approval state | Execution boundary | Packet folder |
 |---|---|---|---|---|---|---|---|
@@ -13,6 +13,7 @@ V0.3 through V0.8 remain manual. This index does not create folders, update Line
 | `foundry-launcher-v0.6-progressive-planning-pack-templates` | Foundry Launcher V0.6 Progressive Planning Pack Templates | `work_package` | `approved_for_manual_execution` | Foundry / Foundry Launcher | Approved for documentation/manual governance use | Documentation/manual governance use only: progressive planning pack templates, planning pack selection guide, lightweight TOGAF-inspired architecture planning framework, and progressive architecture depth rule. UI implementation, automation, integrations, Codex self-launching, registry mutation, and deployment remain blocked. | [foundry-launcher-v0.6-progressive-planning-pack-templates/](foundry-launcher-v0.6-progressive-planning-pack-templates/) |
 | `foundry-launcher-v0.7-first-project-initiation-example` | Foundry Launcher V0.7 First Full Project Initiation Example | `new_module` | `approved_for_manual_execution` | Foundry / Foundry Launcher | Approved as documentation/manual project-initiation reference example | Documentation/manual reference example only. Real module creation, UI implementation, automation, integrations, registry mutation, deployment, and Codex self-launching remain blocked. | [foundry-launcher-v0.7-first-project-initiation-example/](foundry-launcher-v0.7-first-project-initiation-example/) |
 | `foundry-launcher-v0.8-wireframe-specification` | Foundry Launcher V0.8 Wireframe Specification | `work_package` | `approved_for_manual_execution` | Foundry / Foundry Launcher | Approved as documentation/manual wireframe specification | Documentation/manual wireframe specification only. UI implementation, React components, app routes, automation, integrations, registry mutation, deployment, and Codex self-launching remain blocked. | [foundry-launcher-v0.8-wireframe-specification/](foundry-launcher-v0.8-wireframe-specification/) |
+| `foundry-launcher-v0.9-implementation-readiness` | Foundry Launcher V0.9 Implementation Readiness | `work_package` | `approved_for_manual_execution` | Foundry / Foundry Launcher | Approved for documentation/manual implementation-readiness planning | Documentation/manual implementation-readiness only. UI implementation, automation, integrations, deployment, and Codex launch remain blocked. | [foundry-launcher-v0.9-implementation-readiness/](foundry-launcher-v0.9-implementation-readiness/) |
 
 ## Index Rules
 
