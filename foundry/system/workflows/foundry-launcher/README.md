@@ -56,6 +56,10 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 - [Launcher Decision Update Template](../../../templates/launcher/launcher-decision-update-template.md)
 - [Launcher Status Table Template](../../../templates/launcher/launcher-status-table-template.md)
 
+## V0.5 UI Readiness
+
+- [Launcher UI Readiness Specification](launcher-ui-readiness-spec.md)
+
 ## Execution Delegation
 
 - [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md)
