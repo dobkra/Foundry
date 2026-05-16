@@ -1,23 +1,29 @@
 # Scope
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
-## Proposed V0.8 Scope
+## Approval Decision
 
-Create the textual wireframe specification for the future Foundry Launcher UI before any UI implementation begins.
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as a documentation/manual Foundry Launcher wireframe specification. UI implementation, React components, app routes, code, scripts, automation, Linear/GitHub integration, Codex task launch, registry mutation, deployment, server/database work, visual mockups, and DK Arkitekter OS changes remain blocked unless separately approved.
+
+## Approved V0.8 Scope
+
+V0.8 is approved only as a documentation/manual wireframe specification for the future Foundry Launcher UI.
 
 ## In Scope
 
-- Textual wireframe screen model.
-- Screen sequence and screen purpose.
-- Field groups and field types.
-- Default states and conservative defaults.
-- State model.
-- Validation rules.
-- Result and handoff behavior.
-- Future implementation notes.
-- Future integration placeholders marked as blocked.
-- References to registry-backed selectors as read-only future behavior.
+- Use V0.8 as documentation/manual wireframe guidance.
+- Use the 10-screen flow as reference.
+- Use textual layout tables as reference.
+- Use UI state model as reference.
+- Use validation rules as reference.
+- Use result/handoff model as reference.
+- Keep registry-backed selector behavior read-only/reference-only.
+- Keep future integration placeholders blocked unless later approved.
 
 ## Explicit Non-Goals
 
@@ -33,18 +39,18 @@ Create the textual wireframe specification for the future Foundry Launcher UI be
 - No Linear/GitHub integration.
 - No Codex task launch.
 - No Codex self-launching.
-- No work folders.
+- No work folder creation.
 - No registry mutation.
 - No database files.
 - No server code.
 - No dependencies.
 - No deployment.
 - No DK Arkitekter OS repo changes.
-- No images or visual mockups.
+- No visual mockups or image generation.
 
 ## Wireframe Output
 
-The wireframe specification should define:
+The wireframe specification defines:
 
 - Start screen.
 - Parent Context screen.
@@ -57,10 +63,12 @@ The wireframe specification should define:
 - Review screen.
 - Result screen.
 
-## Acceptance Criteria
+## Future Decisions Still Open
 
-- V0.8 remains documentation-only.
-- The wireframe model is selection-first and typing-light.
-- Dictation is described only as a future input convenience, with no speech recognition or audio storage implementation.
-- Registry-backed selectors are described as read-only future behavior.
-- Linear, Codex, GitHub, registry mutation, automation, deployment, and work-folder actions remain blocked unless later approved.
+- Should V0.8 become the canonical wireframe basis?
+- Should the first UI implementation be Foundry Control Center or standalone?
+- Should the first implementation use local/manual file output only?
+- Should registry-backed selectors be read-only in V1?
+- Should V0.9 be implementation-readiness or visual mockup specification?
+
+All are open for future packet.

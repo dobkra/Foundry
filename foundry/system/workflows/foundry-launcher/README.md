@@ -73,6 +73,8 @@ V0.7 provides the approved documentation/manual reference example for full proje
 
 ## V0.8 Wireframe
 
+V0.8 provides the approved documentation/manual wireframe specification for the future Launcher UI.
+
 - [Wireframe Specification](launcher-wireframe-specification.md)
 
 ## Execution Delegation
