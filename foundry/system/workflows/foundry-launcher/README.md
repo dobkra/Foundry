@@ -50,6 +50,12 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 - [Packet Naming](../../../staging/PACKET_NAMING.md)
 - [Launcher Packet Reference Rules](launcher-packet-reference-rules.md)
 
+## V0.4 Packet Lifecycle
+
+- [Launcher Packet Lifecycle Rules](launcher-packet-lifecycle-rules.md)
+- [Launcher Decision Update Template](../../../templates/launcher/launcher-decision-update-template.md)
+- [Launcher Status Table Template](../../../templates/launcher/launcher-status-table-template.md)
+
 ## Execution Delegation
 
 - [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md)
