@@ -11,6 +11,8 @@ export type ParentContext =
   | 'Existing module/workflow'
   | 'No parent yet';
 
+export type ParentProject = '' | 'Foundry' | 'DK Arkitekter OS';
+
 export type LauncherStatus = 'approved_for_manual_execution' | 'needs_review';
 
 export type PlanningDepth =
@@ -43,7 +45,7 @@ export type IntakeFields = {
 export type LauncherFormState = {
   classification: Classification | '';
   parentContext: ParentContext | '';
-  parentProject: 'Foundry' | 'DK Arkitekter OS';
+  parentProject: ParentProject;
   title: string;
   slug: string;
   slugTouched: boolean;
@@ -60,4 +62,10 @@ export type WizardStep = {
   id: string;
   title: string;
   eyebrow: string;
+};
+
+export type StepReviewGuidance = {
+  purpose: string;
+  check: string;
+  notImplemented: string;
 };

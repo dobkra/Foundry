@@ -12,6 +12,10 @@ export function getPacketPath(state: LauncherFormState) {
   return state.slug ? `foundry/staging/${state.slug}/` : 'foundry/staging/[packet-id]/';
 }
 
+function formatList(items: string[], emptyText = 'None selected') {
+  return items.length > 0 ? items.map((item) => `- ${item}`).join('\n') : `- ${emptyText}`;
+}
+
 export function getReviewSummary(state: LauncherFormState) {
   const intakeSummary = [
     state.intake.problemContext && `Problem/context: ${state.intake.problemContext}`,
@@ -30,14 +34,14 @@ export function getReviewSummary(state: LauncherFormState) {
     `Title: ${state.title || '[missing]'}`,
     `Classification: ${state.classification || '[missing]'}`,
     `Parent context: ${state.parentContext || '[missing]'}`,
-    `Parent project: ${state.parentProject}`,
+    `Parent project: ${state.parentProject || '[not selected]'}`,
     `Status: ${state.status}`,
     '',
     '## Planning Depth',
-    state.planningDepth.map((item) => `- ${item}`).join('\n') || '- Basic',
+    formatList(state.planningDepth),
     '',
     '## Blocked Work',
-    state.blockedWork.map((item) => `- ${item}`).join('\n') || '- None selected',
+    formatList(state.blockedWork),
     '',
     '## Intake Summary',
     intakeSummary.length > 0 ? intakeSummary.map((item) => `- ${item}`).join('\n') : '- No intake notes yet.',

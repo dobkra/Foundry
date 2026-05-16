@@ -6,6 +6,7 @@ import {
   parentContexts,
   parentProjects,
   planningDepthOptions,
+  stepReviewGuidance,
   wizardSteps,
 } from './launcherDefaults';
 import {
@@ -21,11 +22,14 @@ import type {
   IntakeFields,
   LauncherFormState,
   ParentContext,
+  ParentProject,
   PlanningDepth,
 } from './launcherTypes';
 
 type LauncherWizardProps = {
   onBackHome: () => void;
+  onToggleTheme: () => void;
+  themeLabel: string;
 };
 
 type CopyState = 'idle' | 'copied' | 'failed';
@@ -65,6 +69,66 @@ const textFieldLabels: Array<{ key: keyof IntakeFields; label: string; helper: s
 
 function toggleValue<T extends string>(values: T[], value: T) {
   return values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
+}
+
+function getDefaultContextForClassification(classification: Classification): ParentContext {
+  if (classification === 'new_project' || classification === 'decision_workshop') {
+    return 'No parent yet';
+  }
+
+  if (classification === 'new_module') {
+    return 'Existing registered project';
+  }
+
+  return 'Existing module/workflow';
+}
+
+function getAllowedParentContexts(classification: Classification | '') {
+  if (classification === 'new_project') {
+    return ['No parent yet', 'Foundry'] as ParentContext[];
+  }
+
+  if (classification === 'new_module') {
+    return ['Existing registered project'] as ParentContext[];
+  }
+
+  if (classification === 'work_package') {
+    return ['Foundry', 'Existing registered project', 'Existing module/workflow'] as ParentContext[];
+  }
+
+  if (classification === 'audit') {
+    return ['Existing registered project', 'Existing module/workflow'] as ParentContext[];
+  }
+
+  if (classification === 'decision_workshop') {
+    return parentContexts;
+  }
+
+  return parentContexts;
+}
+
+function getParentWarning(state: LauncherFormState) {
+  if (!state.classification || !state.parentContext) {
+    return '';
+  }
+
+  if (state.parentContext !== 'No parent yet' && !state.parentProject) {
+    return 'Select a parent project or leave the parent context as No parent yet when the classification allows it.';
+  }
+
+  if (state.classification === 'new_module' && state.parentContext !== 'Existing registered project') {
+    return 'new_module requires an existing registered parent project.';
+  }
+
+  if (state.classification === 'work_package' && state.parentContext === 'No parent yet') {
+    return 'work_package should use an existing project, module, or workflow.';
+  }
+
+  if (state.classification === 'audit' && state.parentContext === 'No parent yet') {
+    return 'audit requires a target project, module, or workflow.';
+  }
+
+  return '';
 }
 
 function OutputBlock({ label, value }: { label: string; value: string }) {
@@ -117,7 +181,7 @@ function getValidationMessage(stepIndex: number, state: LauncherFormState) {
   return '';
 }
 
-function LauncherWizard({ onBackHome }: LauncherWizardProps) {
+function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizardProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [state, setState] = useState<LauncherFormState>(initialLauncherState);
 
@@ -127,6 +191,9 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
   const validationMessage = getValidationMessage(stepIndex, state);
   const canGoNext = !validationMessage;
   const selectedStep = wizardSteps[stepIndex];
+  const currentGuidance = stepReviewGuidance[selectedStep.id];
+  const allowedParentContexts = getAllowedParentContexts(state.classification);
+  const parentWarning = getParentWarning(state);
   const issueBreakdownWarning =
     state.planningDepth.includes('Issue breakdown needed') && !state.approvedSourceScope;
 
@@ -141,6 +208,32 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
         ...current.intake,
         [key]: value,
       },
+    }));
+  }
+
+  function chooseClassification(classification: Classification) {
+    const defaultContext = getDefaultContextForClassification(classification);
+
+    setState((current) => ({
+      ...current,
+      classification,
+      parentContext: defaultContext,
+      parentProject: defaultContext === 'Foundry' ? 'Foundry' : '',
+    }));
+  }
+
+  function updateParentContext(parentContext: ParentContext) {
+    setState((current) => ({
+      ...current,
+      parentContext,
+      parentProject:
+        parentContext === 'Foundry'
+          ? 'Foundry'
+          : parentContext === 'No parent yet'
+            ? ''
+            : current.parentProject === 'Foundry'
+              ? ''
+              : current.parentProject,
     }));
   }
 
@@ -164,6 +257,11 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
     setStepIndex((current) => Math.max(current - 1, 0));
   }
 
+  function resetWizard() {
+    setState(initialLauncherState);
+    setStepIndex(0);
+  }
+
   function renderStep() {
     if (selectedStep.id === 'start') {
       return (
@@ -178,7 +276,7 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
               <input
                 checked={state.classification === classification.value}
                 name="classification"
-                onChange={() => updateState({ classification: classification.value })}
+                onChange={() => chooseClassification(classification.value)}
                 type="radio"
               />
               <span>{classification.label}</span>
@@ -196,10 +294,10 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
             <span>Parent context</span>
             <select
               value={state.parentContext}
-              onChange={(event) => updateState({ parentContext: event.target.value as ParentContext })}
+              onChange={(event) => updateParentContext(event.target.value as ParentContext)}
             >
               <option value="">Select parent context</option>
-              {parentContexts.map((context) => (
+              {allowedParentContexts.map((context) => (
                 <option key={context} value={context}>
                   {context}
                 </option>
@@ -210,11 +308,11 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
           <label className="field">
             <span>Parent project</span>
             <select
+              disabled={state.parentContext === 'No parent yet'}
               value={state.parentProject}
-              onChange={(event) =>
-                updateState({ parentProject: event.target.value as (typeof parentProjects)[number] })
-              }
+              onChange={(event) => updateState({ parentProject: event.target.value as ParentProject })}
             >
+              <option value="">Select parent project</option>
               {parentProjects.map((project) => (
                 <option key={project} value={project}>
                   {project}
@@ -227,6 +325,8 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
             <strong>Registry:</strong> read-only/reference-only. Archive is cold storage and is disabled
             as an active execution parent.
           </div>
+
+          {parentWarning && <p className="field-warning">{parentWarning}</p>}
         </div>
       );
     }
@@ -263,7 +363,7 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
 
           <div className="metadata-readout">
             <span>Parent project</span>
-            <strong>{state.parentProject}</strong>
+            <strong>{state.parentProject || 'Not selected'}</strong>
           </div>
 
           <div className="metadata-readout">
@@ -296,20 +396,39 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
     if (selectedStep.id === 'planning') {
       return (
         <div className="option-stack">
-          {planningDepthOptions.map((option) => (
-            <label className="checkbox-row" key={option}>
+          <div className="planning-group">
+            <p>Base packet</p>
+            <label className="checkbox-row">
               <input
-                checked={state.planningDepth.includes(option)}
+                checked={state.planningDepth.includes('Basic')}
                 onChange={() =>
                   updateState({
-                    planningDepth: toggleValue<PlanningDepth>(state.planningDepth, option),
+                    planningDepth: toggleValue<PlanningDepth>(state.planningDepth, 'Basic'),
                   })
                 }
                 type="checkbox"
               />
-              <span>{option}</span>
+              <span>Basic</span>
             </label>
-          ))}
+          </div>
+
+          <div className="planning-group">
+            <p>Advanced planning packs</p>
+            {planningDepthOptions.map((option) => (
+              <label className="checkbox-row" key={option}>
+                <input
+                  checked={state.planningDepth.includes(option)}
+                  onChange={() =>
+                    updateState({
+                      planningDepth: toggleValue<PlanningDepth>(state.planningDepth, option),
+                    })
+                  }
+                  type="checkbox"
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
 
           <label className="checkbox-row checkbox-row--subtle">
             <input
@@ -460,9 +579,14 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
             Local/internal control surface. Copyable output only. No file generation or integrations.
           </p>
         </div>
-        <button className="secondary-button" type="button" onClick={onBackHome}>
-          Back to Control Center
-        </button>
+        <div className="header-actions">
+          <button className="secondary-button" type="button" onClick={onToggleTheme}>
+            {themeLabel}
+          </button>
+          <button className="secondary-button" type="button" onClick={onBackHome}>
+            Back to Control Center
+          </button>
+        </div>
       </header>
 
       <section className="notice" aria-label="Launcher boundary">
@@ -492,6 +616,24 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
             <h2 id="wizard-step-title">{selectedStep.title}</h2>
           </div>
 
+          <section className="review-helper" aria-label="Step review notes">
+            <h3>What to check on this step</h3>
+            <dl>
+              <div>
+                <dt>Purpose</dt>
+                <dd>{currentGuidance.purpose}</dd>
+              </div>
+              <div>
+                <dt>Check</dt>
+                <dd>{currentGuidance.check}</dd>
+              </div>
+              <div>
+                <dt>Not implemented</dt>
+                <dd>{currentGuidance.notImplemented}</dd>
+              </div>
+            </dl>
+          </section>
+
           {renderStep()}
 
           {validationMessage && <p className="field-warning">{validationMessage}</p>}
@@ -505,7 +647,7 @@ function LauncherWizard({ onBackHome }: LauncherWizardProps) {
                 Continue
               </button>
             ) : (
-              <button className="primary-button" onClick={() => setStepIndex(0)} type="button">
+              <button className="primary-button" onClick={resetWizard} type="button">
                 Start another packet
               </button>
             )}

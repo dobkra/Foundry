@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LauncherWizard from './modules/launcher/LauncherWizard';
+
+type ThemeMode = 'system' | 'dark';
 
 type ModuleCard = {
   title: string;
@@ -36,9 +38,31 @@ const blockedCapabilities = [
 
 function App() {
   const [activeScreen, setActiveScreen] = useState<'home' | 'launcher'>('home');
+  const [theme, setTheme] = useState<ThemeMode>('system');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.dataset.theme = 'dark';
+      return;
+    }
+
+    delete document.documentElement.dataset.theme;
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme((current) => (current === 'dark' ? 'system' : 'dark'));
+  }
+
+  const themeLabel = theme === 'dark' ? 'Use system theme' : 'Dark mode';
 
   if (activeScreen === 'launcher') {
-    return <LauncherWizard onBackHome={() => setActiveScreen('home')} />;
+    return (
+      <LauncherWizard
+        onBackHome={() => setActiveScreen('home')}
+        onToggleTheme={toggleTheme}
+        themeLabel={themeLabel}
+      />
+    );
   }
 
   return (
@@ -49,6 +73,9 @@ function App() {
         <p id="app-subtitle" className="subtitle">
           Internal execution factory control surface
         </p>
+        <button className="secondary-button theme-button" type="button" onClick={toggleTheme}>
+          {themeLabel}
+        </button>
       </section>
 
       <section className="notice" aria-label="Operating boundary">
