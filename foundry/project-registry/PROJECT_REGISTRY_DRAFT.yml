@@ -1,0 +1,51 @@
+projects:
+  - id: foundry
+    name: Foundry
+    type: global-execution-factory
+    target_repo: https://github.com/dobkra/foundry
+    status: planned
+    current_location: current repo transitional foundry folders
+    owns:
+      - standards
+      - templates
+      - support
+      - codex-linear-github-workflow
+      - paperclip-praxion-intelligence-layer
+      - foundry-control-center
+      - foundry-runtime
+      - project-registry
+
+  - id: dk-arkitekter-os
+    name: DK Arkitekter OS
+    type: business-platform
+    current_repo: https://github.com/dobkra/dk-arkitekter-os
+    target_repo: https://github.com/dobkra/dk-arkitekter-os
+    status: active
+    owns:
+      - growth-and-sales
+      - production-tools
+
+branches:
+  - id: growth-and-sales
+    parent: dk-arkitekter-os
+    owns:
+      - public-website-frontend
+      - backend-admin-growth-studio
+      - client-portal
+      - local-content-production-system
+      - governance-data-integrations
+
+  - id: production-tools
+    parent: dk-arkitekter-os
+    owns:
+      - danish-construction-manufacturer-list
+      - supplier-map
+      - material-product-reference-tools
+      - local-research-tools
+      - small-utilities
+
+archive_candidates:
+  - repo: https://github.com/dobkra/dkarkitekter-growth-sales-os
+    reason: similar name, likely duplicate/stale
+    action: document only, do not delete
+
