@@ -60,6 +60,10 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 
 - [Launcher UI Readiness Specification](launcher-ui-readiness-spec.md)
 
+## V0.6 Planning Packs
+
+- [Progressive Planning Pack Templates](../../../templates/launcher/planning-packs/README.md)
+
 ## Execution Delegation
 
 - [Technical Execution Delegation Rules](../../../standards/technical-execution-delegation-rules.md)
