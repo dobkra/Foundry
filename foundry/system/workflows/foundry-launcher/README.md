@@ -42,3 +42,10 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 ## Registry Alignment
 
 - [Project Registry Model](../../../project-registry/project-registry-model.md)
+
+## V0.3 Manual Staging
+
+- [Staging Packet Index](../../../staging/INDEX.md)
+- [Staging Rules](../../../staging/STAGING_RULES.md)
+- [Packet Naming](../../../staging/PACKET_NAMING.md)
+- [Launcher Packet Reference Rules](launcher-packet-reference-rules.md)
