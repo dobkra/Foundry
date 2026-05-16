@@ -15,15 +15,18 @@ Each staged handoff folder should contain:
 
 ## Status Values
 
-Use one status value at a time:
+Use one status value at a time. The canonical status definitions live in the [Launcher Packet Lifecycle Rules](../../system/workflows/foundry-launcher/launcher-packet-lifecycle-rules.md).
 
 - `draft`
 - `staged`
 - `needs_review`
 - `approved_for_registry`
 - `approved_for_execution`
+- `approved_for_manual_execution`
+- `blocked`
 - `rejected`
 - `parked`
+- `superseded`
 
 ## `intake.md`
 
