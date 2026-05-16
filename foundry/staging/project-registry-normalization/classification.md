@@ -1,10 +1,18 @@
 # Classification
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
 ## Selected Classification
 
 `work_package`
+
+## Classification Approval
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved for technical registry normalization reflecting already approved repo split facts. No new project/module creation, ownership change, automation, UI, Linear/GitHub integration, Codex self-launching, deployment, or DK Arkitekter OS repo changes are approved.
 
 ## Classification Rationale
 
@@ -14,25 +22,25 @@ Project Registry already exists inside Foundry. Project Registry Normalization i
 
 This is not a `new_project` because it does not create a new independent Foundry project. The parent project already exists: Foundry.
 
-No new project identity, repository, registry entry, or independent operating model is expected from this staging packet.
+No new project identity, repository, registry entry, or independent operating model is created by this normalization.
 
 ## Why This Is Not `new_module`
 
 This is not a `new_module` because the Project Registry already exists as a Foundry area.
 
-The future work may normalize existing registry wording, but it does not create a new module under Foundry.
+This work normalizes existing registry wording. It does not create a new module under Foundry.
 
 ## Why This Is Not `audit`
 
-This is not an `audit` because the intended output is a scoped normalization work package, not a standalone assessment report.
+This is not an `audit` because the output is a scoped normalization work package, not a standalone assessment report.
 
-The future work may include reviewing the current registry draft, but review is a step inside the normalization package rather than the classification itself.
+Reviewing the current registry draft is a step inside the normalization package rather than the classification itself.
 
 ## Why This Is Not `decision_workshop`
 
-This is not a `decision_workshop` because the goal is to prepare a scoped registry normalization package.
+This is not a `decision_workshop` because the approved work reflects already approved repo split facts.
 
-Some decision questions are included for Dobromir review, but the packet is not decision-only.
+No new direction/authority decision is made by this technical cleanup.
 
 ## Parent Context
 
@@ -42,12 +50,33 @@ Parent area: Project Registry
 
 ## Registry Eligibility
 
-No registry mutation is allowed in this packet.
+Approved only for technical registry normalization reflecting already approved repo split facts.
 
-This packet may prepare a future registry normalization scope, but it does not update `PROJECT_REGISTRY_DRAFT.yml`, `project-registry-model.md`, or any other registry file.
+Blocked:
+
+- New project creation.
+- New module creation.
+- Ownership changes.
+- Scope changes.
+- Parent/child architecture changes.
+- Approval model changes.
 
 ## Execution Eligibility
 
-Blocked until Dobromir approval.
+Allowed:
 
-Current allowed execution is limited to this documentation-only staging packet PR.
+- Documentation/YAML cleanup in the Foundry repo.
+- Repo casing normalization.
+- Transitional wording cleanup.
+- Active repo role clarification.
+- Archive cold storage clarification.
+
+Blocked:
+
+- Automation.
+- UI.
+- Linear/GitHub integration.
+- Codex self-launching.
+- Deployment.
+- Server/database/app routes.
+- DK Arkitekter OS repo changes.

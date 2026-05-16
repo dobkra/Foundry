@@ -1,6 +1,6 @@
 # Project Registry Normalization
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
 ## Intake Title
 
@@ -12,7 +12,7 @@ Clean up transitional project registry wording after the repo split.
 
 ## Requested Outcome
 
-Prepare a reviewed scope for normalizing registry files.
+Normalize registry documentation and draft registry records so they reflect the completed repo split and current Foundry operating model.
 
 ## Classification Candidate
 
@@ -26,65 +26,79 @@ Parent area: Project Registry
 
 ## Business/Project Context
 
-- Foundry repo is the active global execution factory.
-- DK Arkitekter OS is an active registered business OS project inside Foundry.
-- The archive repo is cold storage for historical material.
-- The registry draft may contain transitional wording from the repo split.
+- Foundry repo is the active global execution factory: `dobkra/Foundry`.
+- DK Arkitekter OS is an active registered business OS project/example: `dobkra/dk-arkitekter-os`.
+- The archive repo is cold storage for historical material: `dobkra/archive`.
+- The registry draft contained transitional wording from the repo split.
 
-This packet stages the normalization scope before any registry file is changed.
+This packet authorizes technical registry normalization only, reflecting already approved repo split facts.
+
+## Review Decision
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved for technical registry normalization reflecting already approved repo split facts. No new project/module creation, ownership change, automation, UI, Linear/GitHub integration, Codex self-launching, deployment, or DK Arkitekter OS repo changes are approved.
 
 ## Scope Boundaries
 
 In scope:
 
-- Define the proposed review scope for project registry normalization.
-- Identify open decisions Dobromir should review before registry mutation.
-- Keep registry mutation blocked until approval.
+- Fix stale/transitional registry wording.
+- Normalize repo names and casing.
+- Clarify active repo roles.
+- Clarify archive as cold storage / historical material.
+- Clarify DK Arkitekter OS as a registered project/example, not the default parent.
+- Preserve progressive complexity.
+- Update registry documentation and draft YAML.
 
 Out of scope:
 
-- Editing registry files.
-- Creating project records.
-- Mutating GitHub or Linear.
+- Creating new projects.
+- Creating new modules.
+- Changing project ownership or scope beyond already approved repo split facts.
+- Mutating GitHub or Linear beyond this PR.
 - Automating registry changes.
+- UI, deployment, server, database, app route, or runtime work.
+- DK Arkitekter OS repo changes.
 
 ## Non-Goals
 
-- Do not edit registry files yet.
-- Do not create project records.
-- Do not mutate GitHub/Linear.
+- Do not create project records beyond reflecting existing repo split facts.
+- Do not create module records.
+- Do not mutate GitHub/Linear beyond this pull request.
 - Do not automate anything.
+- Do not change DK Arkitekter OS repo content.
 
 ## Risks/Unknowns
 
-- Registry wording may still reflect the repo split transition.
-- Repo casing may need a final convention.
-- Archive handling may need clearer registry language.
-- Staging packet references may need a lightweight registry convention, but this packet does not approve registry mutation.
+- Future registry work may require more structure, but this cleanup must not invent durable architecture layers.
+- Future new projects/modules still require separate Launcher approval.
 
 ## Approval Requirements
 
-Required approvals:
+Approved for this task:
 
-- Dobromir review of the staging packet.
-- Classification approval for `work_package`.
-- Registry Update Gate approval before any registry file mutation.
-- High-Level Decision Gate approval before durable registry structure changes.
+- Technical registry normalization reflecting already approved repo split facts.
+- Documentation/YAML cleanup inside Foundry only.
 
-Blocked until:
+Blocked unless separately approved:
 
-- Registry mutation, automation, integrations, deployment, and runtime implementation remain blocked until separately approved.
+- New project/module creation.
+- Ownership/scope changes.
+- Automation, UI, integrations, deployment, runtime implementation, or DK Arkitekter OS repo changes.
 
 ## Suggested Next Step
 
-Dobromir reviews and approves or revises the normalization scope.
+Perform technical registry normalization in the Foundry repo and keep future registry structure changes gated by Launcher approval.
 
 ## Reviewer Decision
 
-Decision: `pending`
+Decision: `approved_for_manual_execution`
 
 Reviewer: Dobromir
 
-Date: `[YYYY-MM-DD]`
+Date: `2026-05-16`
 
-Notes: `[Pending review]`
+Notes: Approved for technical registry normalization reflecting already approved repo split facts. No new project/module creation, ownership change, automation, UI, Linear/GitHub integration, Codex self-launching, deployment, or DK Arkitekter OS repo changes are approved.
