@@ -11,8 +11,11 @@ In scope:
 - Create planning pack templates.
 - Create planning pack selection guide.
 - Link templates from Launcher UI readiness spec.
+- Add a lightweight TOGAF-inspired architecture framework.
+- Define a progressive architecture depth rule.
 - Preserve progressive complexity.
 - Avoid forcing all packs on small work.
+- Prevent planning packs from becoming mandatory bureaucracy.
 - Keep Linear/Codex execution blocked until approval.
 
 ## Explicit Non-Goals
@@ -60,6 +63,8 @@ Blocked:
 - Planning pack templates exist.
 - Planning pack selection guide exists.
 - The templates support progressive complexity.
+- The lightweight architecture framework is TOGAF-inspired only.
+- Planning packs do not become mandatory bureaucracy.
 - Small work is not forced through all packs.
 - Issue Breakdown Pack requires approved source scope.
 - Launcher UI readiness spec links to the templates.

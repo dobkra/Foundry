@@ -8,6 +8,14 @@ Linear issues should be generated from approved scope, not used to invent scope.
 
 ChatGPT acts as project architect and planning assistant. Codex records and later executes approved work. Dobromir is required only for direction/authority decisions.
 
+## Lightweight Architecture Framework
+
+Planning packs are TOGAF-inspired but not TOGAF-compliant or TOGAF-mandatory.
+
+They should be used progressively depending on work size and risk.
+
+See [Lightweight Architecture Planning Framework](../../../standards/lightweight-architecture-planning-framework.md).
+
 ## Pack List
 
 - Basic Staging Packet.

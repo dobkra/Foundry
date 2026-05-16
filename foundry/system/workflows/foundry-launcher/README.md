@@ -63,6 +63,7 @@ No Linear issue, GitHub branch, GitHub issue, pull request, Codex execution task
 ## V0.6 Planning Packs
 
 - [Progressive Planning Pack Templates](../../../templates/launcher/planning-packs/README.md)
+- [Lightweight Architecture Planning Framework](../../../standards/lightweight-architecture-planning-framework.md)
 
 ## Execution Delegation
 

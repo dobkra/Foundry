@@ -24,6 +24,14 @@ Use planning packs progressively. Add only the packs needed to clarify, approve,
 
 Simple work should stay simple. Larger or higher-risk work can use additional packs when more clarity is needed before implementation.
 
+## Architecture Depth
+
+- Tiny/routine task: basic staging packet only.
+- Medium feature: Discovery Pack + Goals/Outcomes Pack + Issue Breakdown Pack as needed.
+- Large project/system: Discovery + Business Functions + Architecture + Goals/Outcomes + UI/Workflow Sprint + Issue Breakdown as relevant.
+- Do not force all packs on every project.
+- Use architecture depth based on project risk, durability, system impact, business impact, and approval needs.
+
 ## Approval Boundary
 
 Planning packs do not replace Launcher review gates. Dobromir remains required for direction/authority decisions.

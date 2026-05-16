@@ -15,6 +15,10 @@ This packet prepares reusable planning pack templates for Dobromir review.
 - Should issue breakdown be the first place where Linear issue structure is drafted?
 - Should project-local repos later include their own planning-packs folder?
 - Should Discovery and Architecture packs be required for all `new_project` classifications?
+- Should the future Launcher UI include an architecture-depth selector?
+- Should `new_project` classifications default to Discovery + Architecture + Goals/Outcomes before Issue Breakdown?
+- Should small work packages be allowed to bypass architecture packs entirely?
+- Should the framework remain TOGAF-inspired without using formal TOGAF terminology in the UI?
 
 ## Initial Notes
 
