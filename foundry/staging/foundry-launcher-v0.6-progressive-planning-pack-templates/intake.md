@@ -1,6 +1,6 @@
 # Foundry Launcher V0.6 Progressive Planning Pack Templates
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
 ## Intake Title
 
@@ -30,14 +30,12 @@ Foundry Launcher V0.5 documented the progressive planning pack model. V0.6 creat
 
 ## Scope Boundaries
 
-In scope:
+Approved for:
 
-- Create progressive planning pack templates.
-- Create a planning pack selection guide.
-- Link templates from the Launcher UI readiness specification.
-- Preserve progressive complexity.
-- Avoid forcing all packs on small work.
-- Keep Linear/Codex execution blocked until approval.
+- Progressive planning pack templates.
+- Planning pack selection guide.
+- Lightweight TOGAF-inspired architecture planning framework.
+- Progressive architecture depth rule.
 
 Out of scope:
 
@@ -62,35 +60,24 @@ Out of scope:
 - No deployment.
 - No DK Arkitekter OS repo changes.
 
-## Risks/Unknowns
-
-- Templates should help larger projects plan progressively without making small work heavy.
-- Issue breakdown should only happen after approved source scope exists.
-- The packs should preserve Dobromir authority decisions while letting ChatGPT/Codex handle routine documentation work.
-
 ## Approval Requirements
 
-Required approvals:
+Approval completed for the documentation/manual governance boundary only.
 
-- Dobromir review of the V0.6 packet.
-- Classification approval for `work_package`.
-- High-Level Decision Gate approval for planning pack direction.
-- Execution Setup Gate approval before any future Linear/Codex setup.
-
-Blocked until:
+Blocked until separately approved:
 
 - UI implementation, automation, Linear/GitHub integration, Codex self-launching, database, server, deployment, app routes, registry mutation, and DK Arkitekter OS repo changes remain blocked until separately approved.
 
 ## Suggested Next Step
 
-Dobromir review of planning pack template direction.
+Use the merged V0.6 planning pack templates and lightweight architecture planning framework as documentation/manual governance within the approved boundary.
 
 ## Reviewer Decision
 
-Decision: `pending`
+Decision: `approved_for_manual_execution`
 
 Reviewer: Dobromir
 
-Date: `[YYYY-MM-DD]`
+Date: `2026-05-16`
 
-Notes: `[Pending review]`
+Notes: `Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.`

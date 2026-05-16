@@ -1,6 +1,16 @@
 # Classification
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
+
+## Reviewer Decision
+
+Decision: `approved_for_manual_execution`
+
+Reviewer: Dobromir
+
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
 
 ## Selected Classification
 
@@ -32,7 +42,7 @@ It defines readiness requirements before any UI is built.
 
 This is not a `decision_workshop` because the task creates a concrete specification document and staging packet.
 
-Some open questions are recorded for Dobromir, but the packet is not decision-only.
+Some future open questions remain for Dobromir, but the packet is not decision-only.
 
 ## Parent Context
 
@@ -42,12 +52,12 @@ Parent workflow/module: Foundry Launcher
 
 ## Registry Eligibility
 
-No registry mutation is allowed in this packet.
+No registry mutation is allowed or approved in this packet.
 
 The future UI may eventually read from the Foundry project registry if separately approved, but V0.5 does not mutate registry files.
 
 ## Execution Eligibility
 
-Execution is documentation-only until Dobromir approval.
+Execution is limited to documentation/manual UI readiness governance use.
 
 UI implementation, components, app routes, automation, CLI, Linear/GitHub integration, Codex self-launching, database, server, deployment, and registry mutation remain blocked unless separately approved.

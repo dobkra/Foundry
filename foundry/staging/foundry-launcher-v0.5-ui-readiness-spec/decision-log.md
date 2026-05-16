@@ -1,14 +1,14 @@
 # Decision Log
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
-## Initial Decision State
+## Decision State
 
-No V0.5 UI readiness decision has been made.
+V0.5 UI readiness specification has been reviewed and merged into `main` for documentation/manual Foundry Launcher governance use.
 
-This packet prepares the selection-first, typing-light UI readiness direction for Dobromir review before any UI implementation is proposed.
+## Open Questions For Future Packets
 
-## Open Questions
+These questions may inform later work, but this packet does not approve UI implementation, automation, runtime behavior, integrations, deployment, or registry mutation.
 
 - Should the future Launcher UI be part of Foundry Control Center or standalone first?
 - Should parent project/module options come from registry YAML initially?
@@ -18,9 +18,9 @@ This packet prepares the selection-first, typing-light UI readiness direction fo
 - Should Linear integration start with project/issue creation only after packet approval?
 - Should Codex tasks use a work folder by default or only when needed?
 - Should Discovery / Architecture / Business Functions / Goals / UI Sprint packs become optional packet modules?
-- Should V0.6 be UI wireframe/spec refinement or first implementation packet?
+- Should a future packet be UI wireframe/spec refinement or first implementation packet?
 
-## Initial Notes
+## Decision Notes
 
 - V0.5 remains documentation-only and manual.
 - V0.5 does not build UI.
@@ -29,11 +29,11 @@ This packet prepares the selection-first, typing-light UI readiness direction fo
 - Free-text fields should be dictation-friendly, but V0.5 does not implement speech recognition or store/process audio.
 - The future result model is packet first, prompt second, execution only after approval.
 - Future Linear/Codex integration direction is documented, but no integration is implemented.
-- Progressive planning packs are documented, but no packs are implemented.
+- Progressive planning packs are documented, but no packs are implemented by V0.5.
 - UI implementation remains blocked until a separate approved implementation packet exists.
 
 ## Decisions
 
 | Date | Decision | Owner | Notes |
 |---|---|---|---|
-| `[YYYY-MM-DD]` | Pending review | Dobromir | Initial V0.5 staging packet created for UI readiness specification. |
+| `2026-05-16` | Approved for documentation/manual governance use | Dobromir | Approved UI readiness specification, selection-first / typing-light UX principle, dictation-assisted free-text requirement, packet-first / prompt-second result model, future Linear/Codex direction as documentation only, and progressive planning packs as documentation only. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved. |

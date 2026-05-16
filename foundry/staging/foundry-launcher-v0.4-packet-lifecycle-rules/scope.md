@@ -1,22 +1,27 @@
 # Scope
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
-## Proposed V0.4 Scope
+## Reviewer Decision
 
-Foundry Launcher V0.4 may add manual lifecycle and decision-update rules for Launcher packets.
+Decision: `approved_for_manual_execution`
 
-Potential V0.4 scope:
+Reviewer: Dobromir
 
-- Define packet lifecycle statuses.
-- Define status transition rules.
-- Define how review decisions should be recorded.
-- Define which packet files should be updated after review.
-- Add a standard decision-update template.
-- Add a standard lifecycle status table template.
-- Update staging and Launcher docs with links to lifecycle rules.
-- Integrate the technical execution delegation rule.
-- Reduce repeated manual/copy-paste packet review updates.
+Decision date: `2026-05-16`
+
+Decision summary: Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.
+
+## Approved V0.4 Scope
+
+Foundry Launcher V0.4 adds manual lifecycle and decision-update rules for Launcher packets.
+
+Approved boundary:
+
+- Lifecycle rules.
+- Packet status rules.
+- Decision-update procedure.
+- Technical execution delegation reference.
 
 ## Explicit Non-Goals
 
@@ -55,7 +60,7 @@ Blocked:
 - Project/module creation.
 - Client-facing, pricing, legal/privacy, business, or creative decisions unless separately approved.
 
-## Acceptance Criteria For Review
+## Verification State
 
 - V0.4 remains manual.
 - Lifecycle statuses are clearly defined.
@@ -63,4 +68,3 @@ Blocked:
 - Decision-update procedure states which files to update after review.
 - Delegated technical execution is integrated without weakening Dobromir authority decisions.
 - Automation and runtime work remain blocked.
-- Relative links resolve.

@@ -1,6 +1,6 @@
 # Foundry Launcher V0.4 Packet Lifecycle and Decision Update Rules
 
-Status: `needs_review`
+Status: `approved_for_manual_execution`
 
 ## Intake Title
 
@@ -30,20 +30,18 @@ Parent workflow: Foundry Launcher
 - Foundry Launcher V0.2 created the first real staging packet and recorded review decisions.
 - Foundry Launcher V0.3 created the staging index, packet naming rules, staging rules, and packet reference rules.
 - PR #11 added Foundry technical execution delegation rules.
-- The current pain point is repeated manual/copy-paste review updates after a packet is approved.
+- The current pain point was repeated manual/copy-paste review updates after a packet is approved.
 
-V0.4 should standardize the manual packet lifecycle and decision-update process without introducing automation.
+V0.4 standardizes the manual packet lifecycle and decision-update process without introducing automation.
 
 ## Scope Boundaries
 
-In scope:
+Approved for:
 
-- Define manual packet lifecycle statuses.
-- Define status transition rules.
-- Define a decision-update procedure.
-- Add decision-update and lifecycle status table templates.
-- Link lifecycle rules from Launcher and staging documentation.
-- Integrate the technical execution delegation rule.
+- Lifecycle rules.
+- Packet status rules.
+- Decision-update procedure.
+- Technical execution delegation reference.
 
 Out of scope:
 
@@ -68,36 +66,24 @@ Out of scope:
 - Do not modify DK Arkitekter OS repo.
 - Do not mutate project registry records.
 
-## Risks/Unknowns
-
-- Status names must remain compatible with existing Launcher terminology.
-- The lifecycle rules should reduce repeated manual review-update work without pretending to automate it.
-- The delegation rule must not be read as permission to bypass Dobromir for direction/authority decisions.
-- The distinction between `approved_for_execution` and `approved_for_manual_execution` should be clear.
-
 ## Approval Requirements
 
-Required approvals:
+Approval completed for the documentation/manual governance boundary only.
 
-- Dobromir review of the V0.4 packet.
-- Classification approval for `work_package`.
-- High-Level Decision Gate approval for lifecycle status and decision-update conventions.
-- Execution Setup Gate approval before any future automation, integration, or runtime behavior.
-
-Blocked until:
+Blocked until separately approved:
 
 - Automation, registry mutation, integrations, deployment, runtime implementation, UI, CLI, database, server, app routes, and Codex self-launching remain blocked until separately approved.
 
 ## Suggested Next Step
 
-Dobromir reviews the V0.4 packet and approves, revises, parks, rejects, or supersedes the lifecycle rule direction.
+Use the merged V0.4 lifecycle rules as documentation/manual governance within the approved boundary.
 
 ## Reviewer Decision
 
-Decision: `pending`
+Decision: `approved_for_manual_execution`
 
 Reviewer: Dobromir
 
-Date: `[YYYY-MM-DD]`
+Date: `2026-05-16`
 
-Notes: `[Pending review]`
+Notes: `Approved as documentation/manual Foundry Launcher governance. Runtime implementation, UI, automation, external integrations, registry mutation, deployment, and Codex self-launching remain blocked unless separately approved.`
