@@ -30,6 +30,14 @@ function getItemDisplay(itemId: string) {
   return `${item.type}: ${item.label}`;
 }
 
+function getSummaryStatus(state: LauncherFormState) {
+  return state.classification === 'new_project' ||
+    state.classification === 'new_module' ||
+    state.classification === 'decision_workshop'
+    ? 'needs_review'
+    : state.status;
+}
+
 export function getContextSummary(state: LauncherFormState) {
   if (!state.parentMode) {
     return '[missing]';
@@ -68,7 +76,7 @@ export function getReviewSummary(state: LauncherFormState) {
     `Classification: ${state.classification || '[missing]'}`,
     `Context model: ${state.parentMode || '[missing]'}`,
     `Selected context: ${getContextSummary(state)}`,
-    `Status: ${state.status}`,
+    `Status: ${getSummaryStatus(state)}`,
     '',
     '## Planning Depth',
     formatList(state.planningDepth),
@@ -100,7 +108,7 @@ export function getCodexPromptPlaceholder(state: LauncherFormState) {
     `- Packet path: ${getPacketPath(state)}`,
     `- Classification: ${state.classification || '[missing]'}`,
     `- Context: ${getContextSummary(state)}`,
-    `- Approval status: ${state.status}`,
+    `- Approval status: ${getSummaryStatus(state)}`,
     `- Execution boundary: local/internal copyable wizard output only unless a packet separately approves more.`,
     `- Blocked work: ${state.blockedWork.join(', ') || 'none selected'}`,
     '',
@@ -124,6 +132,6 @@ export function getPacketOutline(state: LauncherFormState) {
     '- approval.md',
     '- execution-readiness.md',
     '',
-    'This V1.1 UI does not write these files. It only prepares copyable Markdown output.',
+    'This V1.2 UI does not write these files. It only prepares copyable Markdown output.',
   ].join('\n');
 }

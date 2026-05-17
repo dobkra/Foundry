@@ -16,8 +16,8 @@ const modules: ModuleCard[] = [
     title: 'Foundry Launcher',
     status: 'Available',
     purpose: 'Start and stage Foundry work before execution.',
-    currentStatus: 'Minimal local wizard module ready for visual review.',
-    nextStep: 'Use the wizard to prepare copyable packet summaries and prompt placeholders.',
+    currentStatus: 'Minimal local wizard with copyable Markdown packet output.',
+    nextStep: 'Use the wizard to preview and copy packet Markdown files. No disk writes yet.',
     blocked: [
       'Linear/GitHub/Codex integration',
       'automation',

@@ -12,6 +12,8 @@ The shell is not deployed and is not client-facing. It does not include authenti
 
 The Foundry Launcher minimal wizard module now exists inside the shell as a local/internal UI product surface. It uses local React state and copyable Markdown output only.
 
+V1.2 can generate copyable Markdown previews for the core Launcher packet files. It still does not write generated files to disk, mutate the registry, integrate external systems, or deploy anything.
+
 ## Run Locally
 
 Install dependencies:
@@ -43,10 +45,10 @@ npm run preview
 
 - Foundry Launcher: minimal local wizard module available for visual review.
 
-## V1.1 Limitations
+## V1.2 Limitations
 
 - Uses local in-memory state only.
-- Generates copyable Markdown output only.
+- Generates copyable Markdown packet output only.
 - Does not write generated packet files to disk.
 - Does not mutate the project registry.
 - Does not create Linear or GitHub issues.
@@ -56,7 +58,7 @@ npm run preview
 
 ## Visual Review
 
-Foundry Launcher V1.1 is a UI/product PR.
+Foundry Launcher V1.1 and V1.2 are UI/product PRs.
 
 Dobromir should review the running local UI once before final merge for:
 
@@ -88,4 +90,4 @@ Technical implementation details do not require Dobromir review.
 
 ## Next Intended Step
 
-After visual review, decide whether the next approved packet should add local Markdown file generation, registry-backed read-only selectors, or full Approval Categories and Execution Permissions steps.
+After visual review, decide whether the next approved packet should add safe local file generation, registry-backed read-only selectors, or full Approval Categories and Execution Permissions steps.

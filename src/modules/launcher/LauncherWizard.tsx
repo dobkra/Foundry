@@ -19,6 +19,12 @@ import {
   getReviewSummary,
   toSlug,
 } from './launcherSummary';
+import {
+  getAllPacketMarkdown,
+  getGeneratedPacketFiles,
+  getGeneratedPacketStatus,
+} from './launcherPacketMarkdown';
+import type { GeneratedPacketFile } from './launcherPacketMarkdown';
 import type {
   BlockedWork,
   Classification,
@@ -143,7 +149,7 @@ function getHierarchyGuidance(state: LauncherFormState) {
     return 'New projects may sit under a group or sub-group. A group is an organizing container, not software.';
   }
 
-  if (state.classifiation === 'new_module') {
+  if (state.classification === 'new_module') {
     return 'New modules must belong to an existing project or an existing module inside a project.';
   }
 
@@ -151,7 +157,7 @@ function getHierarchyGuidance(state: LauncherFormState) {
     return 'Work packages can affect one or more groups, projects, or modules without creating new structure.';
   }
 
-  if (state.classifiation === 'audit') {
+  if (state.classification === 'audit') {
     return 'Audits can target one or more groups, projects, or modules and should name the affected items.';
   }
 
@@ -256,12 +262,16 @@ function RegistryItemButton({
   );
 }
 
+async function copyText(value: string) {
+  await navigator.clipboard.writeText(value);
+}
+
 function OutputBlock({ label, value }: { label: string; value: string }) {
   const [copyState, setCopyState] = useState<CopyState>('idle');
 
   async function copyValue() {
     try {
-      await navigator.clipboard.writeText(value);
+      await copyText(value);
       setCopyState('copied');
     } catch {
       setCopyState('failed');
@@ -280,6 +290,83 @@ function OutputBlock({ label, value }: { label: string; value: string }) {
         <p className="field-warning">Copy failed. Select the text manually from the field below.</p>
       )}
       <textarea readOnly value={value} rows={10} aria-label={label} />
+    </section>
+  );
+}
+
+function MarkdownPacketPreview({
+  files,
+  allMarkdown,
+}: {
+  files: GeneratedPacketFile[];
+  allMarkdown: string;
+}) {
+  const [selectedFilename, setSelectedFilename] = useState(files[0]?.filename || '');
+  const [copyCurrentState, setCopyCurrentState] = useState<CopyState>('idle');
+  const [copyAllState, setCopyAllState] = useState<CopyState>('idle');
+  const selectedFile = files.find((file) => file.filename === selectedFilename) || files[0];
+
+  async function copyCurrentFile() {
+    try {
+      await copyText(selectedFile.content);
+      setCopyCurrentState('copied');
+    } catch {
+      setCopyCurrentState('failed');
+    }
+  }
+
+  async function copyAllFiles() {
+    try {
+      await copyText(allMarkdown);
+      setCopyAllState('copied');
+    } catch {
+      setCopyAllState('failed');
+    }
+  }
+
+  return (
+    <section className="markdown-output" aria-label="Generated packet Markdown">
+      <div className="markdown-output__header">
+        <div>
+          <p className="eyebrow">Generated packet files</p>
+          <h3>Copy-only Markdown output</h3>
+          <p>V1.2 previews generated packet Markdown. It does not write files to disk.</p>
+        </div>
+        <div className="markdown-actions">
+          <button className="secondary-button" type="button" onClick={copyCurrentFile}>
+            {copyCurrentState === 'copied' ? 'Current copied' : 'Copy current file'}
+          </button>
+          <button className="primary-button" type="button" onClick={copyAllFiles}>
+            {copyAllState === 'copied' ? 'All copied' : 'Copy all packet markdown'}
+          </button>
+        </div>
+      </div>
+
+      {(copyCurrentState === 'failed' || copyAllState === 'failed') && (
+        <p className="field-warning">Copy failed. Select the Markdown text manually from the preview.</p>
+      )}
+
+      <div className="file-tab-list" aria-label="Generated file list">
+        {files.map((file) => (
+          <button
+            className={`file-tab ${selectedFile.filename === file.filename ? 'file-tab--active' : ''}`}
+            key={file.filename}
+            onClick={() => setSelectedFilename(file.filename)}
+            type="button"
+          >
+            <span>{file.filename}</span>
+            <small>{file.label}</small>
+          </button>
+        ))}
+      </div>
+
+      <textarea
+        aria-label={`${selectedFile.filename} Markdown preview`}
+        className="markdown-preview"
+        readOnly
+        rows={16}
+        value={selectedFile.content}
+      />
     </section>
   );
 }
@@ -323,6 +410,12 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
   const reviewSummary = useMemo(() => getReviewSummary(state), [state]);
   const codexPrompt = useMemo(() => getCodexPromptPlaceholder(state), [state]);
   const packetOutline = useMemo(() => getPacketOutline(state), [state]);
+  const generatedPacketFiles = useMemo(() => getGeneratedPacketFiles(state), [state]);
+  const allPacketMarkdown = useMemo(
+    () => getAllPacketMarkdown(generatedPacketFiles),
+    [generatedPacketFiles],
+  );
+  const generatedPacketStatus = useMemo(() => getGeneratedPacketStatus(state), [state]);
   const validationMessage = getValidationMessage(stepIndex, state);
   const canGoNext = !validationMessage;
   const selectedStep = wizardSteps[stepIndex];
@@ -334,7 +427,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
   const issueBreakdownWarning =
     state.planningDepth.includes('Issue breakdown needed') && !state.approvedSourceScope;
 
-  function updateState(next: Partial<LauncherFormState)) {
+  function updateState(next: Partial<LauncherFormState>) {
     setState((current) => ({ ...current, ...next }));
   }
 
@@ -429,7 +522,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
             <div>
               <p>Proposed future option</p>
               <small>
-                Shown for product review only. It is not an approved Launcher classification in V1.1.
+                Shown for product review only. It is not an approved active Launcher classification.
               </small>
             </div>
             {classificationProposals.map((proposal) => (
@@ -511,15 +604,15 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
             state.parentMode !== 'No parent yet' &&
             state.parentMode !== 'Affected items' && (
               <div className="field field--wide">
-                <span>{state.parentMode}</span>
-                <div className="item-select-grid">
-                  {selectableParentItems.map((item) => (
-                    <RegistryItemButton
-                      item={item}
-                      key={item.id}
-                      onSelect={() => updateState({ parentItemId: item.id })}
-                      selected={state.parentItemId === item.id}
-                    />
+              <span>{state.parentMode}</span>
+              <div className="item-select-grid">
+                {selectableParentItems.map((item) => (
+                  <RegistryItemButton
+                    item={item}
+                    key={item.id}
+                    onSelect={() => updateState({ parentItemId: item.id })}
+                    selected={state.parentItemId === item.id}
+                  />
                 ))}
               </div>
               {state.parentItemId && <small>Selected: {getParentLabel(state.parentItemId)}</small>}
@@ -575,7 +668,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
             <span>Packet title</span>
             <input
               onChange={(event) => updateTitle(event.target.value)}
-              placeholder="Foundry Launcher V1.1 Minimal Wizard Module"
+              placeholder="Foundry Launcher V1.2 Local Markdown Packet Output"
               type="text"
               value={state.title}
             />
@@ -587,7 +680,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
               onChange={(event) =>
                 updateState({ slug: toSlug(event.target.value), slugTouched: true })
               }
-              placeholder="foundry-launcher-v1.1-minimal-wizard-module"
+              placeholder="foundry-launcher-v1.2-markdown-packet-output"
               type="text"
               value={state.slug}
             />
@@ -609,7 +702,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
             <small>Default for safe documentation/manual packets.</small>
           </div>
         </div>
-     );
+      );
     }
 
     if (selectedStep.id === 'intake') {
@@ -794,12 +887,30 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
               <dd>{getContextSummary(state)}</dd>
             </div>
             <div>
+              <dt>Status</dt>
+              <dd>{generatedPacketStatus}</dd>
+            </div>
+            <div>
               <dt>Next action</dt>
-              <dd>Copy handoff text. Do not generate files or trigger execution from V1.1.</dd>
+              <dd>Copy generated Markdown. Do not write files or trigger execution from V1.2.</dd>
             </div>
           </dl>
         </section>
 
+        <section className="generated-file-list" aria-label="Generated file names">
+          <div>
+            <p className="eyebrow">Generated file list</p>
+            <h3>{generatedPacketFiles.length} Markdown files ready to copy</h3>
+          </div>
+          <ul>
+            {generatedPacketFiles.map((file) => (
+              <li key={file.filename}>{file.filename}</li>
+            ))}
+          </ul>
+          <p>Copy-only. V1.2 does not write files to disk.</p>
+        </section>
+
+        <MarkdownPacketPreview files={generatedPacketFiles} allMarkdown={allPacketMarkdown} />
         <OutputBlock label="Copyable review summary" value={reviewSummary} />
         <OutputBlock label="Copyable Codex prompt placeholder" value={codexPrompt} />
         <OutputBlock label="Optional packet outline" value={packetOutline} />
@@ -826,7 +937,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
       </header>
 
       <section className="notice" aria-label="Launcher boundary">
-        <strong>Boundary:</strong> This V1.1 wizard uses local state only. It does not write staging
+        <strong>Boundary:</strong> This V1.2 wizard uses local state only. It does not write staging
         files, mutate the registry, create issues, launch Codex, automate work, or deploy anything.
       </section>
 
