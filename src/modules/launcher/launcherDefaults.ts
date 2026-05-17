@@ -37,6 +37,15 @@ export const classifications: Array<{ value: Classification; label: string; desc
   },
 ];
 
+export const classificationProposals = [
+  {
+    label: 'New group',
+    description:
+      'Proposed future start type for creating an organizing group. Not an active Launcher classification yet.',
+    status: 'Needs classification approval',
+  },
+];
+
 export const parentModes: ParentMode[] = [
   'No parent yet',
   'Parent group',
@@ -142,12 +151,12 @@ export const wizardSteps: WizardStep[] = [
 export const stepReviewGuidance: Record<string, StepReviewGuidance> = {
   start: {
     purpose: 'Choose the work classification that controls later parent-context expectations.',
-    check: 'Do the five classification choices make sense for the work being staged?',
+    check: 'Do the five approved classification choices make sense, and should New group become an approved future option?',
     notImplemented: 'No execution, issue creation, or automation is triggered from this step.',
   },
   parent: {
     purpose: 'Choose where the work belongs or which groups/projects/modules are affected.',
-    check: 'Check group/project/module logic, defaults, and whether DK Arkitekter OS is not treated as the default parent.',
+    check: 'Check group/project/module logic, visible module choices, defaults, and whether DK Arkitekter OS is not treated as the default parent.',
     notImplemented: 'No registry write, project creation, or external-system integration is implemented.',
   },
   metadata: {

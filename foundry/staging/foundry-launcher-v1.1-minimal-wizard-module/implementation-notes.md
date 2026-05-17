@@ -79,12 +79,23 @@ Applied after Dobromir's follow-up visual/product feedback:
 - Added clearer blocked-work helper text explaining that blocked work means "not authorized by this packet."
 - Reframed Result as the handoff/copy area so it no longer behaves like a duplicate Review screen.
 
+## Third UX Correction Pass
+
+Applied after Dobromir's follow-up feedback on Start and Parent Context:
+
+- Added `New group` as a proposed future start type on the Start screen.
+- Kept `New group` inactive as a V1.1 classification because the approved Launcher model still has five classifications.
+- Replaced the hidden module-parent path with visible project and module parent cards for `new_module`.
+- Made available modules visible in Parent Context without requiring a separate dropdown discovery step.
+- Preserved the current static read-only hierarchy and recorded registry-backed hierarchy as a future decision.
+
 ## Remaining UI/Product Decisions
 
 - Whether the review helper should remain in the main wizard or become a reviewer-only mode.
 - Whether Light/Dark preference should later persist between sessions.
 - Whether parent selectors should later read registry YAML directly.
 - Whether the group/project/module hierarchy should become a registry-backed data model.
+- Whether `new_group` should become a formal Launcher classification.
 - Whether V1.2 should add local Markdown file generation.
 - Whether Approval Categories and Execution Permissions should become full wizard steps.
 

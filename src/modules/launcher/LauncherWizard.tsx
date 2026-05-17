@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import {
   classifications,
+  classificationProposals,
   defaultBlockedWork,
   initialLauncherState,
   parentModes,
@@ -121,6 +122,14 @@ function getItemsByType(type: RegistryItemType) {
   return registryItems.filter((item) => item.type === type);
 }
 
+function getItemParentLabel(item: RegistryItem) {
+  if (!item.parentId) {
+    return '';
+  }
+
+  return registryItems.find((candidate) => candidate.id === item.parentId)?.label || '';
+}
+
 function getParentLabel(itemId: string) {
   return registryItems.find((item) => item.id === itemId)?.label || '';
 }
@@ -134,7 +143,7 @@ function getHierarchyGuidance(state: LauncherFormState) {
     return 'New projects may sit under a group or sub-group. A group is an organizing container, not software.';
   }
 
-  if (state.classification === 'new_module') {
+  if (state.classifiation === 'new_module') {
     return 'New modules must belong to an existing project or an existing module inside a project.';
   }
 
@@ -142,7 +151,7 @@ function getHierarchyGuidance(state: LauncherFormState) {
     return 'Work packages can affect one or more groups, projects, or modules without creating new structure.';
   }
 
-  if (state.classification === 'audit') {
+  if (state.classifiation === 'audit') {
     return 'Audits can target one or more groups, projects, or modules and should name the affected items.';
   }
 
@@ -220,6 +229,30 @@ function RegistryItemCheckbox({
         <small>{item.description}</small>
       </span>
     </label>
+  );
+}
+
+function RegistryItemButton({
+  item,
+  selected,
+  onSelect,
+}: {
+  item: RegistryItem;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  const parentLabel = getItemParentLabel(item);
+
+  return (
+    <button
+      className={`item-card item-card--button ${selected ? 'item-card--selected' : ''}`}
+      onClick={onSelect}
+      type="button"
+    >
+      <strong>{item.label}</strong>
+      <small>{item.description}</small>
+      {parentLabel && <small>Parent: {parentLabel}</small>}
+    </button>
   );
 }
 
@@ -301,7 +334,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
   const issueBreakdownWarning =
     state.planningDepth.includes('Issue breakdown needed') && !state.approvedSourceScope;
 
-  function updateState(next: Partial<LauncherFormState>) {
+  function updateState(next: Partial<LauncherFormState)) {
     setState((current) => ({ ...current, ...next }));
   }
 
@@ -371,24 +404,42 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
   function renderStep() {
     if (selectedStep.id === 'start') {
       return (
-        <div className="wizard-card-grid">
-          {classifications.map((classification) => (
-            <label
-              className={`selection-card ${
-                state.classification === classification.value ? 'selection-card--selected' : ''
-              }`}
-              key={classification.value}
-            >
-              <input
-                checked={state.classification === classification.value}
-                name="classification"
-                onChange={() => chooseClassification(classification.value)}
-                type="radio"
-              />
-              <span>{classification.label}</span>
-              <small>{classification.description}</small>
-            </label>
-          ))}
+        <div className="start-layout">
+          <div className="wizard-card-grid">
+            {classifications.map((classification) => (
+              <label
+                className={`selection-card ${
+                  state.classification === classification.value ? 'selection-card--selected' : ''
+                }`}
+                key={classification.value}
+              >
+                <input
+                  checked={state.classification === classification.value}
+                  name="classification"
+                  onChange={() => chooseClassification(classification.value)}
+                  type="radio"
+                />
+                <span>{classification.label}</span>
+                <small>{classification.description}</small>
+              </label>
+            ))}
+          </div>
+
+          <section className="proposal-panel" aria-label="Proposed future start types">
+            <div>
+              <p>Proposed future option</p>
+              <small>
+                Shown for product review only. It is not an approved Launcher classification in V1.1.
+              </small>
+            </div>
+            {classificationProposals.map((proposal) => (
+              <div className="proposal-card" key={proposal.label}>
+                <strong>{proposal.label}</strong>
+                <span>{proposal.status}</span>
+                <small>{proposal.description}</small>
+              </div>
+            ))}
+          </section>
         </div>
       );
     }
@@ -396,38 +447,84 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
     if (selectedStep.id === 'parent') {
       return (
         <div className="form-grid">
-          <label className="field">
-            <span>Context mode</span>
-            <select
-              value={state.parentMode}
-              onChange={(event) => updateParentMode(event.target.value as ParentMode)}
-            >
-              <option value="">Select context mode</option>
+          <fieldset className="fieldset field--wide">
+            <legend>Context mode</legend>
+            <div className="mode-grid">
               {allowedParentModes.map((context) => (
-                <option key={context} value={context}>
-                  {context}
-                </option>
+                <label
+                  className={`selection-card selection-card--compact ${
+                    state.parentMode === context ? 'selection-card--selected' : ''
+                  }`}
+                  key={context}
+                >
+                  <input
+                    checked={state.parentMode === context}
+                    name="parentMode"
+                    onChange={() => updateParentMode(context)}
+                    type="radio"
+                  />
+                  <span>{context}</span>
+                </label>
               ))}
-            </select>
-          </label>
+            </div>
+          </fieldset>
 
-          {state.parentMode !== 'No parent yet' && state.parentMode !== 'Affected items' && (
-            <label className="field">
-              <span>{state.parentMode}</span>
-              <select
-                value={state.parentItemId}
-                onChange={(event) => updateState({ parentItemId: event.target.value })}
-              >
-                <option value="">Select {state.parentMode.toLowerCase()}</option>
-                {selectableParentItems.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-              {state.parentItemId && <small>{getParentLabel(state.parentItemId)}</small>}
-            </label>
+          {state.classification === 'new_module' && (
+            <div className="field field--wide">
+              <span>Available module parents</span>
+              <small>
+                Select a project to create a module inside that project, or select an existing module
+                to create a nested module.
+              </small>
+              <div className="item-checklist item-checklist--two">
+                <section className="item-group">
+                  <p>Projects</p>
+                  {getItemsByType('project').map((item) => (
+                    <RegistryItemButton
+                      item={item}
+                      key={item.id}
+                      onSelect={() =>
+                        updateState({ parentMode: 'Parent project', parentItemId: item.id })
+                      }
+                      selected={state.parentMode === 'Parent project' && state.parentItemId === item.id}
+                    />
+                  ))}
+                </section>
+                <section className="item-group">
+                  <p>Modules</p>
+                  {getItemsByType('module').map((item) => (
+                    <RegistryItemButton
+                      item={item}
+                      key={item.id}
+                      onSelect={() =>
+                        updateState({ parentMode: 'Parent module', parentItemId: item.id })
+                      }
+                      selected={state.parentMode === 'Parent module' && state.parentItemId === item.id}
+                    />
+                  ))}
+                </section>
+              </div>
+            </div>
           )}
+
+          {state.classification !== 'new_module' &&
+            state.parentMode !== 'No parent yet' &&
+            state.parentMode !== 'Affected items' && (
+              <div className="field field--wide">
+                <span>{state.parentMode}</span>
+                <div className="item-select-grid">
+                  {selectableParentItems.map((item) => (
+                    <RegistryItemButton
+                      item={item}
+                      key={item.id}
+                      onSelect={() => updateState({ parentItemId: item.id })}
+                      selected={state.parentItemId === item.id}
+                    />
+                ))}
+              </div>
+              {state.parentItemId && <small>Selected: {getParentLabel(state.parentItemId)}</small>}
+            </div>
+            )}
 
           <div className="inline-note">
             <strong>Hierarchy:</strong> Groups organize work and can contain sub-groups or projects.
@@ -512,7 +609,7 @@ function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProp
             <small>Default for safe documentation/manual packets.</small>
           </div>
         </div>
-      );
+     );
     }
 
     if (selectedStep.id === 'intake') {

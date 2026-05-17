@@ -288,7 +288,7 @@ h1 {
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface-subtle);
-  padding: 6px 10ppx;
+  padding: 6px 10px;
   font-weight: 700;
 }
 
@@ -497,6 +497,11 @@ h1 {
   gap: 12px;
 }
 
+.start-layout {
+  display: grid;
+  gap: 14px;
+}
+
 .selection-card {
   display: grid;
   gap: 8px;
@@ -504,6 +509,10 @@ h1 {
   border-radius: 8px;
   background: var(--surface);
   padding: 16px;
+}
+
+.selection-card--compact {
+  padding: 12px;
 }
 
 .selection-card input {
@@ -525,6 +534,53 @@ h1 {
 .selection-card--selected {
   border-color: var(--accent);
   background: var(--accent-soft);
+}
+
+.proposal-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  gap: 12px;
+  align-items: stretch;
+  border: 1px dashed var(--border-strong);
+  border-radius: 8px;
+  background: var(--surface-subtle);
+  padding: 14px;
+}
+
+.proposal-panel p {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.proposal-panel small,
+.proposal-card small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.proposal-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 12px;
+}
+
+.proposal-card strong {
+  color: var(--heading);
+}
+
+.proposal-card span {
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
 }
 
 .form-grid,
@@ -599,6 +655,12 @@ h1 {
   padding: 12px;
 }
 
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
 .checkbox-row {
   display: flex;
   align-items: start;
@@ -637,6 +699,16 @@ h1 {
   gap: 12px;
 }
 
+.item-checklist--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.item-select-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
 .item-group {
   display: grid;
   gap: 8px;
@@ -659,6 +731,18 @@ h1 {
   border-radius: 8px;
   background: var(--surface);
   padding: 10px;
+}
+
+.item-card--button {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  text-align: left;
+}
+
+.item-card--selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .item-card--checkbox {
