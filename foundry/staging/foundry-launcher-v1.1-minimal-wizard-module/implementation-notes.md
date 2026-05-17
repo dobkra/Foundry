@@ -59,11 +59,32 @@ Applied after Dobromir visual review:
 - Reset wizard state when starting another packet.
 - Corrected generated summary behavior when no planning depth is selected.
 
+## Second UX Correction Pass
+
+Applied after Dobromir's follow-up visual/product feedback:
+
+- Replaced the single theme toggle with explicit Light and Dark buttons.
+- Reworked Parent Context into a clearer context hierarchy model:
+  - groups organize work and are not software projects
+  - projects can contain modules
+  - modules can be nested under projects or other modules
+  - work packages, audits, and decision workshops can select multiple affected groups/projects/modules
+- Updated Intake fields to better support Codex handoff:
+  - raw idea / context
+  - requested outcome
+  - current state
+  - target state
+  - constraints / risks / unknowns
+  - source materials / notes
+- Added clearer blocked-work helper text explaining that blocked work means "not authorized by this packet."
+- Reframed Result as the handoff/copy area so it no longer behaves like a duplicate Review screen.
+
 ## Remaining UI/Product Decisions
 
 - Whether the review helper should remain in the main wizard or become a reviewer-only mode.
-- Whether dark mode should default to system, dark, or a persisted user choice.
+- Whether Light/Dark preference should later persist between sessions.
 - Whether parent selectors should later read registry YAML directly.
+- Whether the group/project/module hierarchy should become a registry-backed data model.
 - Whether V1.2 should add local Markdown file generation.
 - Whether Approval Categories and Execution Permissions should become full wizard steps.
 
@@ -81,10 +102,11 @@ The running UI does not write files to disk.
 
 Registry behavior remains read-only/reference-only.
 
-The wizard exposes static parent project options:
+The wizard exposes static context options for V1.1 only:
 
-- Foundry.
-- DK Arkitekter OS.
+- groups such as Foundry and DK Arkitekter OS
+- projects such as Foundry Control Center and Foundry Project Registry
+- modules such as Foundry Launcher and Foundry Launcher Wizard
 
 Archive is shown as cold storage/reference only and is not selectable as an active execution parent.
 

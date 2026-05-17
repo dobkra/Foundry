@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import LauncherWizard from './modules/launcher/LauncherWizard';
-
-type ThemeMode = 'system' | 'dark';
+import type { ThemeMode } from './modules/launcher/launcherTypes';
 
 type ModuleCard = {
   title: string;
@@ -36,31 +35,49 @@ const blockedCapabilities = [
   'No registry mutation',
 ];
 
+function ThemeSwitch({
+  theme,
+  onThemeChange,
+}: {
+  theme: ThemeMode;
+  onThemeChange: (theme: ThemeMode) => void;
+}) {
+  return (
+    <div className="theme-switch" aria-label="Theme mode">
+      <button
+        aria-pressed={theme === 'light'}
+        className={`theme-option ${theme === 'light' ? 'theme-option--active' : ''}`}
+        onClick={() => onThemeChange('light')}
+        type="button"
+      >
+        Light
+      </button>
+      <button
+        aria-pressed={theme === 'dark'}
+        className={`theme-option ${theme === 'dark' ? 'theme-option--active' : ''}`}
+        onClick={() => onThemeChange('dark')}
+        type="button"
+      >
+        Dark
+      </button>
+    </div>
+  );
+}
+
 function App() {
   const [activeScreen, setActiveScreen] = useState<'home' | 'launcher'>('home');
-  const [theme, setTheme] = useState<ThemeMode>('system');
+  const [theme, setTheme] = useState<ThemeMode>('light');
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.dataset.theme = 'dark';
-      return;
-    }
-
-    delete document.documentElement.dataset.theme;
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
-
-  function toggleTheme() {
-    setTheme((current) => (current === 'dark' ? 'system' : 'dark'));
-  }
-
-  const themeLabel = theme === 'dark' ? 'Use system theme' : 'Dark mode';
 
   if (activeScreen === 'launcher') {
     return (
       <LauncherWizard
         onBackHome={() => setActiveScreen('home')}
-        onToggleTheme={toggleTheme}
-        themeLabel={themeLabel}
+        onThemeChange={setTheme}
+        theme={theme}
       />
     );
   }
@@ -73,9 +90,7 @@ function App() {
         <p id="app-subtitle" className="subtitle">
           Internal execution factory control surface
         </p>
-        <button className="secondary-button theme-button" type="button" onClick={toggleTheme}>
-          {themeLabel}
-        </button>
+        <ThemeSwitch theme={theme} onThemeChange={setTheme} />
       </section>
 
       <section className="notice" aria-label="Operating boundary">
@@ -153,7 +168,7 @@ function App() {
       <section className="grid-section" aria-labelledby="boundary-title">
         <div className="section-heading">
           <h2 id="boundary-title">Shell boundary</h2>
-          <p>The packet remains the source of truth. The Launcher wizard is not implemented yet.</p>
+          <p>The packet remains the source of truth. The Launcher wizard produces copyable output only.</p>
         </div>
 
         <ul className="boundary-list">

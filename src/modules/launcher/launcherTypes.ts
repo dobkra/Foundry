@@ -5,13 +5,25 @@ export type Classification =
   | 'audit'
   | 'decision_workshop';
 
-export type ParentContext =
-  | 'Foundry'
-  | 'Existing registered project'
-  | 'Existing module/workflow'
-  | 'No parent yet';
+export type ThemeMode = 'light' | 'dark';
 
-export type ParentProject = '' | 'Foundry' | 'DK Arkitekter OS';
+export type RegistryItemType = 'group' | 'project' | 'module';
+
+export type RegistryItem = {
+  id: string;
+  label: string;
+  type: RegistryItemType;
+  parentId?: string;
+  description: string;
+  active: boolean;
+};
+
+export type ParentMode =
+  | 'No parent yet'
+  | 'Parent group'
+  | 'Parent project'
+  | 'Parent module'
+  | 'Affected items';
 
 export type LauncherStatus = 'approved_for_manual_execution' | 'needs_review';
 
@@ -34,18 +46,19 @@ export type BlockedWork =
   | 'database/server/app routes';
 
 export type IntakeFields = {
-  problemContext: string;
-  whyItMatters: string;
-  currentWorkflow: string;
-  targetWorkflow: string;
-  painPoints: string;
+  rawIdea: string;
+  requestedOutcome: string;
+  currentState: string;
+  targetState: string;
+  constraints: string;
   sourceMaterials: string;
 };
 
 export type LauncherFormState = {
   classification: Classification | '';
-  parentContext: ParentContext | '';
-  parentProject: ParentProject;
+  parentMode: ParentMode | '';
+  parentItemId: string;
+  affectedItemIds: string[];
   title: string;
   slug: string;
   slugTouched: boolean;

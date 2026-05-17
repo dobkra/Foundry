@@ -1,4 +1,5 @@
 import type { LauncherFormState } from './launcherTypes';
+import { registryItems } from './launcherDefaults';
 
 export function toSlug(value: string) {
   return value
@@ -16,13 +17,45 @@ function formatList(items: string[], emptyText = 'None selected') {
   return items.length > 0 ? items.map((item) => `- ${item}`).join('\n') : `- ${emptyText}`;
 }
 
+function getItemLabel(itemId: string) {
+  return registryItems.find((item) => item.id === itemId)?.label || itemId;
+}
+
+function getItemDisplay(itemId: string) {
+  const item = registryItems.find((candidate) => candidate.id === itemId);
+  if (!item) {
+    return itemId;
+  }
+
+  return `${item.type}: ${item.label}`;
+}
+
+export function getContextSummary(state: LauncherFormState) {
+  if (!state.parentMode) {
+    return '[missing]';
+  }
+
+  if (state.parentMode === 'Affected items') {
+    const affectedItems = state.affectedItemIds.map(getItemDisplay);
+    return affectedItems.length > 0 ? affectedItems.join(', ') : 'Affected items not selected yet';
+  }
+
+  if (state.parentMode === 'No parent yet') {
+    return 'No parent yet';
+  }
+
+  return state.parentItemId
+    ? `${state.parentMode}: ${getItemLabel(state.parentItemId)}`
+    : `${state.parentMode}: [not selected]`;
+}
+
 export function getReviewSummary(state: LauncherFormState) {
   const intakeSummary = [
-    state.intake.problemContext && `Problem/context: ${state.intake.problemContext}`,
-    state.intake.whyItMatters && `Why this matters: ${state.intake.whyItMatters}`,
-    state.intake.currentWorkflow && `Current workflow: ${state.intake.currentWorkflow}`,
-    state.intake.targetWorkflow && `Target workflow: ${state.intake.targetWorkflow}`,
-    state.intake.painPoints && `Pain points: ${state.intake.painPoints}`,
+    state.intake.rawIdea && `Raw idea/context: ${state.intake.rawIdea}`,
+    state.intake.requestedOutcome && `Requested outcome: ${state.intake.requestedOutcome}`,
+    state.intake.currentState && `Current state: ${state.intake.currentState}`,
+    state.intake.targetState && `Target state: ${state.intake.targetState}`,
+    state.intake.constraints && `Constraints/risks/unknowns: ${state.intake.constraints}`,
     state.intake.sourceMaterials && `Source materials/notes: ${state.intake.sourceMaterials}`,
   ].filter(Boolean);
 
@@ -33,8 +66,8 @@ export function getReviewSummary(state: LauncherFormState) {
     `Packet path: ${getPacketPath(state)}`,
     `Title: ${state.title || '[missing]'}`,
     `Classification: ${state.classification || '[missing]'}`,
-    `Parent context: ${state.parentContext || '[missing]'}`,
-    `Parent project: ${state.parentProject || '[not selected]'}`,
+    `Context model: ${state.parentMode || '[missing]'}`,
+    `Selected context: ${getContextSummary(state)}`,
     `Status: ${state.status}`,
     '',
     '## Planning Depth',
@@ -66,6 +99,7 @@ export function getCodexPromptPlaceholder(state: LauncherFormState) {
     `- Packet id: ${state.slug || '[missing]'}`,
     `- Packet path: ${getPacketPath(state)}`,
     `- Classification: ${state.classification || '[missing]'}`,
+    `- Context: ${getContextSummary(state)}`,
     `- Approval status: ${state.status}`,
     `- Execution boundary: local/internal copyable wizard output only unless a packet separately approves more.`,
     `- Blocked work: ${state.blockedWork.join(', ') || 'none selected'}`,

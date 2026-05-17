@@ -3,14 +3,16 @@ import {
   classifications,
   defaultBlockedWork,
   initialLauncherState,
-  parentContexts,
-  parentProjects,
+  parentModes,
   planningDepthOptions,
+  referenceItems,
+  registryItems,
   stepReviewGuidance,
   wizardSteps,
 } from './launcherDefaults';
 import {
   getCodexPromptPlaceholder,
+  getContextSummary,
   getPacketOutline,
   getPacketPath,
   getReviewSummary,
@@ -21,44 +23,46 @@ import type {
   Classification,
   IntakeFields,
   LauncherFormState,
-  ParentContext,
-  ParentProject,
+  ParentMode,
   PlanningDepth,
+  RegistryItem,
+  RegistryItemType,
+  ThemeMode,
 } from './launcherTypes';
 
 type LauncherWizardProps = {
   onBackHome: () => void;
-  onToggleTheme: () => void;
-  themeLabel: string;
+  theme: ThemeMode;
+  onThemeChange: (theme: ThemeMode) => void;
 };
 
 type CopyState = 'idle' | 'copied' | 'failed';
 
 const textFieldLabels: Array<{ key: keyof IntakeFields; label: string; helper: string }> = [
   {
-    key: 'problemContext',
-    label: 'Problem / context',
-    helper: 'What is happening and where does this work belong?',
+    key: 'rawIdea',
+    label: 'Raw idea / context',
+    helper: 'Plain-language description of the work, question, or problem.',
   },
   {
-    key: 'whyItMatters',
-    label: 'Why this matters',
-    helper: 'The reason this packet should exist.',
+    key: 'requestedOutcome',
+    label: 'Requested outcome',
+    helper: 'What should exist after review or execution?',
   },
   {
-    key: 'currentWorkflow',
-    label: 'Current workflow',
-    helper: 'How the work happens today.',
+    key: 'currentState',
+    label: 'Current state',
+    helper: 'What exists today, including current workflow or files.',
   },
   {
-    key: 'targetWorkflow',
-    label: 'Target workflow',
-    helper: 'How the work should behave after approval.',
+    key: 'targetState',
+    label: 'Target state',
+    helper: 'What should change or become clearer after this packet?',
   },
   {
-    key: 'painPoints',
-    label: 'Pain points',
-    helper: 'Friction, risk, repeated steps, or missing clarity.',
+    key: 'constraints',
+    label: 'Constraints / risks / unknowns',
+    helper: 'Boundaries Codex should not cross, open questions, or known risks.',
   },
   {
     key: 'sourceMaterials',
@@ -71,64 +75,152 @@ function toggleValue<T extends string>(values: T[], value: T) {
   return values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
 }
 
-function getDefaultContextForClassification(classification: Classification): ParentContext {
-  if (classification === 'new_project' || classification === 'decision_workshop') {
-    return 'No parent yet';
-  }
-
-  if (classification === 'new_module') {
-    return 'Existing registered project';
-  }
-
-  return 'Existing module/workflow';
-}
-
-function getAllowedParentContexts(classification: Classification | '') {
+function getDefaultParentModeForClassification(classification: Classification): ParentMode {
   if (classification === 'new_project') {
-    return ['No parent yet', 'Foundry'] as ParentContext[];
+    return 'Parent group';
   }
 
   if (classification === 'new_module') {
-    return ['Existing registered project'] as ParentContext[];
+    return 'Parent project';
   }
 
-  if (classification === 'work_package') {
-    return ['Foundry', 'Existing registered project', 'Existing module/workflow'] as ParentContext[];
-  }
-
-  if (classification === 'audit') {
-    return ['Existing registered project', 'Existing module/workflow'] as ParentContext[];
-  }
-
-  if (classification === 'decision_workshop') {
-    return parentContexts;
-  }
-
-  return parentContexts;
+  return 'Affected items';
 }
 
-function getParentWarning(state: LauncherFormState) {
-  if (!state.classification || !state.parentContext) {
+function getAllowedParentModes(classification: Classification | '') {
+  if (classification === 'new_project') {
+    return ['No parent yet', 'Parent group'] as ParentMode[];
+  }
+
+  if (classification === 'new_module') {
+    return ['Parent project', 'Parent module'] as ParentMode[];
+  }
+
+  if (classification === 'work_package' || classification === 'audit' || classification === 'decision_workshop') {
+    return ['Affected items'] as ParentMode[];
+  }
+
+  return parentModes;
+}
+
+function getSelectableParentItems(state: LauncherFormState) {
+  if (state.classification === 'new_project') {
+    return registryItems.filter((item) => item.type === 'group');
+  }
+
+  if (state.classification === 'new_module') {
+    return registryItems.filter((item) =>
+      state.parentMode === 'Parent module' ? item.type === 'module' : item.type === 'project',
+    );
+  }
+
+  return registryItems;
+}
+
+function getItemsByType(type: RegistryItemType) {
+  return registryItems.filter((item) => item.type === type);
+}
+
+function getParentLabel(itemId: string) {
+  return registryItems.find((item) => item.id === itemId)?.label || '';
+}
+
+function getHierarchyGuidance(state: LauncherFormState) {
+  if (!state.classification || !state.parentMode) {
     return '';
   }
 
-  if (state.parentContext !== 'No parent yet' && !state.parentProject) {
-    return 'Select a parent project or leave the parent context as No parent yet when the classification allows it.';
+  if (state.classification === 'new_project') {
+    return 'New projects may sit under a group or sub-group. A group is an organizing container, not software.';
   }
 
-  if (state.classification === 'new_module' && state.parentContext !== 'Existing registered project') {
-    return 'new_module requires an existing registered parent project.';
+  if (state.classification === 'new_module') {
+    return 'New modules must belong to an existing project or an existing module inside a project.';
   }
 
-  if (state.classification === 'work_package' && state.parentContext === 'No parent yet') {
-    return 'work_package should use an existing project, module, or workflow.';
+  if (state.classification === 'work_package') {
+    return 'Work packages can affect one or more groups, projects, or modules without creating new structure.';
   }
 
-  if (state.classification === 'audit' && state.parentContext === 'No parent yet') {
-    return 'audit requires a target project, module, or workflow.';
+  if (state.classification === 'audit') {
+    return 'Audits can target one or more groups, projects, or modules and should name the affected items.';
+  }
+
+  return 'Decision workshops can apply to one or more groups, projects, or modules without creating execution work.';
+}
+
+function getParentWarning(state: LauncherFormState) {
+  if (!state.classification || !state.parentMode) {
+    return '';
+  }
+
+  if (state.classification === 'new_project' && state.parentMode === 'Parent group' && !state.parentItemId) {
+    return 'Select the group this project belongs under, or choose No parent yet.';
+  }
+
+  if (state.classification === 'new_module' && !state.parentItemId) {
+    return 'new_module requires an existing project or module parent.';
+  }
+
+  if (
+    (state.classification === 'work_package' ||
+      state.classification === 'audit' ||
+      state.classification === 'decision_workshop') &&
+    state.affectedItemIds.length === 0
+  ) {
+    return 'Select one or more affected groups, projects, or modules when the target context is known.';
   }
 
   return '';
+}
+
+function ThemeSwitch({
+  theme,
+  onThemeChange,
+}: {
+  theme: ThemeMode;
+  onThemeChange: (theme: ThemeMode) => void;
+}) {
+  return (
+    <div className="theme-switch" aria-label="Theme mode">
+      <button
+        aria-pressed={theme === 'light'}
+        className={`theme-option ${theme === 'light' ? 'theme-option--active' : ''}`}
+        onClick={() => onThemeChange('light')}
+        type="button"
+      >
+        Light
+      </button>
+      <button
+        aria-pressed={theme === 'dark'}
+        className={`theme-option ${theme === 'dark' ? 'theme-option--active' : ''}`}
+        onClick={() => onThemeChange('dark')}
+        type="button"
+      >
+        Dark
+      </button>
+    </div>
+  );
+}
+
+function RegistryItemCheckbox({
+  item,
+  checked,
+  onToggle,
+}: {
+  item: RegistryItem;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <label className="item-card item-card--checkbox">
+      <input checked={checked} onChange={onToggle} type="checkbox" />
+      <span>
+        <strong>{item.label}</strong>
+        <small>{item.description}</small>
+      </span>
+    </label>
+  );
 }
 
 function OutputBlock({ label, value }: { label: string; value: string }) {
@@ -164,8 +256,18 @@ function getValidationMessage(stepIndex: number, state: LauncherFormState) {
     return 'Select a work type before continuing.';
   }
 
-  if (stepIndex === 1 && !state.parentContext) {
-    return 'Select a parent context before continuing.';
+  if (stepIndex === 1) {
+    if (!state.parentMode) {
+      return 'Select a context mode before continuing.';
+    }
+
+    if (state.classification === 'new_project' && state.parentMode === 'Parent group' && !state.parentItemId) {
+      return 'Select a parent group or choose No parent yet.';
+    }
+
+    if (state.classification === 'new_module' && !state.parentItemId) {
+      return 'Select the project or module this new module belongs to.';
+    }
   }
 
   if (stepIndex === 2) {
@@ -181,7 +283,7 @@ function getValidationMessage(stepIndex: number, state: LauncherFormState) {
   return '';
 }
 
-function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizardProps) {
+function LauncherWizard({ onBackHome, theme, onThemeChange }: LauncherWizardProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [state, setState] = useState<LauncherFormState>(initialLauncherState);
 
@@ -192,8 +294,10 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
   const canGoNext = !validationMessage;
   const selectedStep = wizardSteps[stepIndex];
   const currentGuidance = stepReviewGuidance[selectedStep.id];
-  const allowedParentContexts = getAllowedParentContexts(state.classification);
+  const allowedParentModes = getAllowedParentModes(state.classification);
+  const selectableParentItems = getSelectableParentItems(state);
   const parentWarning = getParentWarning(state);
+  const hierarchyGuidance = getHierarchyGuidance(state);
   const issueBreakdownWarning =
     state.planningDepth.includes('Issue breakdown needed') && !state.approvedSourceScope;
 
@@ -212,28 +316,30 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
   }
 
   function chooseClassification(classification: Classification) {
-    const defaultContext = getDefaultContextForClassification(classification);
+    const defaultParentMode = getDefaultParentModeForClassification(classification);
 
     setState((current) => ({
       ...current,
       classification,
-      parentContext: defaultContext,
-      parentProject: defaultContext === 'Foundry' ? 'Foundry' : '',
+      parentMode: defaultParentMode,
+      parentItemId: '',
+      affectedItemIds: [],
     }));
   }
 
-  function updateParentContext(parentContext: ParentContext) {
+  function updateParentMode(parentMode: ParentMode) {
     setState((current) => ({
       ...current,
-      parentContext,
-      parentProject:
-        parentContext === 'Foundry'
-          ? 'Foundry'
-          : parentContext === 'No parent yet'
-            ? ''
-            : current.parentProject === 'Foundry'
-              ? ''
-              : current.parentProject,
+      parentMode,
+      parentItemId: '',
+      affectedItemIds: parentMode === 'Affected items' ? current.affectedItemIds : [],
+    }));
+  }
+
+  function toggleAffectedItem(itemId: string) {
+    setState((current) => ({
+      ...current,
+      affectedItemIds: toggleValue(current.affectedItemIds, itemId),
     }));
   }
 
@@ -291,13 +397,13 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
       return (
         <div className="form-grid">
           <label className="field">
-            <span>Parent context</span>
+            <span>Context mode</span>
             <select
-              value={state.parentContext}
-              onChange={(event) => updateParentContext(event.target.value as ParentContext)}
+              value={state.parentMode}
+              onChange={(event) => updateParentMode(event.target.value as ParentMode)}
             >
-              <option value="">Select parent context</option>
-              {allowedParentContexts.map((context) => (
+              <option value="">Select context mode</option>
+              {allowedParentModes.map((context) => (
                 <option key={context} value={context}>
                   {context}
                 </option>
@@ -305,27 +411,61 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
             </select>
           </label>
 
-          <label className="field">
-            <span>Parent project</span>
-            <select
-              disabled={state.parentContext === 'No parent yet'}
-              value={state.parentProject}
-              onChange={(event) => updateState({ parentProject: event.target.value as ParentProject })}
-            >
-              <option value="">Select parent project</option>
-              {parentProjects.map((project) => (
-                <option key={project} value={project}>
-                  {project}
-                </option>
-              ))}
-            </select>
-          </label>
+          {state.parentMode !== 'No parent yet' && state.parentMode !== 'Affected items' && (
+            <label className="field">
+              <span>{state.parentMode}</span>
+              <select
+                value={state.parentItemId}
+                onChange={(event) => updateState({ parentItemId: event.target.value })}
+              >
+                <option value="">Select {state.parentMode.toLowerCase()}</option>
+                {selectableParentItems.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+              {state.parentItemId && <small>{getParentLabel(state.parentItemId)}</small>}
+            </label>
+          )}
 
           <div className="inline-note">
-            <strong>Registry:</strong> read-only/reference-only. Archive is cold storage and is disabled
-            as an active execution parent.
+            <strong>Hierarchy:</strong> Groups organize work and can contain sub-groups or projects.
+            Projects can contain modules. Modules can contain submodules when needed. Groups are not
+            software projects.
           </div>
 
+          {state.parentMode === 'Affected items' && (
+            <div className="field field--wide">
+              <span>Affected items</span>
+              <small>
+                Work packages, audits, and decision workshops can apply to one item or a group of
+                groups, projects, and modules.
+              </small>
+              <div className="item-checklist">
+                {(['group', 'project', 'module'] as RegistryItemType[]).map((type) => (
+                  <section className="item-group" key={type}>
+                    <p>{type}s</p>
+                    {getItemsByType(type).map((item) => (
+                      <RegistryItemCheckbox
+                        checked={state.affectedItemIds.includes(item.id)}
+                        item={item}
+                        key={item.id}
+                        onToggle={() => toggleAffectedItem(item.id)}
+                      />
+                    ))}
+                  </section>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="reference-note field--wide">
+            <strong>Registry reference:</strong> active options are read-only.{' '}
+            {referenceItems.map((item) => `${item.label}: ${item.description}`).join(' ')}
+          </div>
+
+          {hierarchyGuidance && <p className="inline-note">{hierarchyGuidance}</p>}
           {parentWarning && <p className="field-warning">{parentWarning}</p>}
         </div>
       );
@@ -362,8 +502,8 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
           </div>
 
           <div className="metadata-readout">
-            <span>Parent project</span>
-            <strong>{state.parentProject || 'Not selected'}</strong>
+            <span>Context</span>
+            <strong>{getContextSummary(state)}</strong>
           </div>
 
           <div className="metadata-readout">
@@ -451,6 +591,10 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
         <div className="form-grid">
           <fieldset className="fieldset">
             <legend>Blocked work</legend>
+            <p className="fieldset-note">
+              Checked items are safety boundaries. They mean this packet does not authorize that
+              work.
+            </p>
             <div className="option-stack">
               {defaultBlockedWork.map((item) => (
                 <label className="checkbox-row" key={item}>
@@ -508,8 +652,8 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
                 <dd>{state.classification || 'Missing'}</dd>
               </div>
               <div>
-                <dt>Parent context</dt>
-                <dd>{state.parentContext || 'Missing'}</dd>
+                <dt>Context</dt>
+                <dd>{getContextSummary(state)}</dd>
               </div>
               <div>
                 <dt>Planning depth</dt>
@@ -534,33 +678,30 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
 
     return (
       <div className="result-layout">
-        <div className="result-grid">
-          <div className="metadata-readout">
-            <span>Packet id</span>
-            <strong>{state.slug || 'Missing'}</strong>
+        <section className="handoff-card">
+          <div>
+            <p className="eyebrow">Handoff</p>
+            <h3>Use this page to copy the packet handoff text.</h3>
+            <p>
+              Review is for checking the packet. Result is for copying the summary, draft Codex
+              prompt, or outline after the packet looks correct.
+            </p>
           </div>
-          <div className="metadata-readout">
-            <span>Packet path</span>
-            <strong>{getPacketPath(state)}</strong>
-          </div>
-          <div className="metadata-readout">
-            <span>Classification</span>
-            <strong>{state.classification || 'Missing'}</strong>
-          </div>
-          <div className="metadata-readout">
-            <span>Status</span>
-            <strong>{state.status}</strong>
-          </div>
-        </div>
-
-        <div className="blocked-list blocked-list--boxed">
-          <span>Blocked work</span>
-          <ul>
-            {state.blockedWork.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
+          <dl className="handoff-list">
+            <div>
+              <dt>Packet</dt>
+              <dd>{state.slug || 'Missing'} at {getPacketPath(state)}</dd>
+            </div>
+            <div>
+              <dt>Context</dt>
+              <dd>{getContextSummary(state)}</dd>
+            </div>
+            <div>
+              <dt>Next action</dt>
+              <dd>Copy handoff text. Do not generate files or trigger execution from V1.1.</dd>
+            </div>
+          </dl>
+        </section>
 
         <OutputBlock label="Copyable review summary" value={reviewSummary} />
         <OutputBlock label="Copyable Codex prompt placeholder" value={codexPrompt} />
@@ -580,9 +721,7 @@ function LauncherWizard({ onBackHome, onToggleTheme, themeLabel }: LauncherWizar
           </p>
         </div>
         <div className="header-actions">
-          <button className="secondary-button" type="button" onClick={onToggleTheme}>
-            {themeLabel}
-          </button>
+          <ThemeSwitch theme={theme} onThemeChange={onThemeChange} />
           <button className="secondary-button" type="button" onClick={onBackHome}>
             Back to Control Center
           </button>

@@ -2,8 +2,9 @@ import type {
   BlockedWork,
   Classification,
   LauncherFormState,
-  ParentContext,
+  ParentMode,
   PlanningDepth,
+  RegistryItem,
   StepReviewGuidance,
   WizardStep,
 } from './launcherTypes';
@@ -36,14 +37,77 @@ export const classifications: Array<{ value: Classification; label: string; desc
   },
 ];
 
-export const parentContexts: ParentContext[] = [
-  'Foundry',
-  'Existing registered project',
-  'Existing module/workflow',
+export const parentModes: ParentMode[] = [
   'No parent yet',
+  'Parent group',
+  'Parent project',
+  'Parent module',
+  'Affected items',
 ];
 
-export const parentProjects = ['Foundry', 'DK Arkitekter OS'] as const;
+export const registryItems: RegistryItem[] = [
+  {
+    id: 'foundry',
+    label: 'Foundry',
+    type: 'group',
+    description: 'Global execution factory group.',
+    active: true,
+  },
+  {
+    id: 'dk-arkitekter-os',
+    label: 'DK Arkitekter OS',
+    type: 'group',
+    description: 'Registered business OS group/example, not the Foundry default parent.',
+    active: true,
+  },
+  {
+    id: 'foundry-control-center',
+    label: 'Foundry Control Center',
+    type: 'project',
+    parentId: 'foundry',
+    description: 'Internal control surface project inside Foundry.',
+    active: true,
+  },
+  {
+    id: 'foundry-project-registry',
+    label: 'Foundry Project Registry',
+    type: 'project',
+    parentId: 'foundry',
+    description: 'Registry documentation and project reference area.',
+    active: true,
+  },
+  {
+    id: 'foundry-launcher',
+    label: 'Foundry Launcher',
+    type: 'module',
+    parentId: 'foundry-control-center',
+    description: 'Staging and intake workflow module.',
+    active: true,
+  },
+  {
+    id: 'foundry-launcher-wizard',
+    label: 'Foundry Launcher Wizard',
+    type: 'module',
+    parentId: 'foundry-launcher',
+    description: 'Minimal local wizard module under Foundry Launcher.',
+    active: true,
+  },
+  {
+    id: 'dk-arkitekter-business-os',
+    label: 'DK Arkitekter Business OS',
+    type: 'project',
+    parentId: 'dk-arkitekter-os',
+    description: 'Active registered business OS project/example.',
+    active: true,
+  },
+];
+
+export const referenceItems = [
+  {
+    label: 'Archive',
+    description: 'Cold storage / historical material. Not selectable as an active execution parent.',
+  },
+];
 
 export const planningDepthOptions: PlanningDepth[] = [
   'Discovery needed',
@@ -66,7 +130,7 @@ export const defaultBlockedWork: BlockedWork[] = [
 
 export const wizardSteps: WizardStep[] = [
   { id: 'start', title: 'Start', eyebrow: '01' },
-  { id: 'parent', title: 'Parent Context', eyebrow: '02' },
+  { id: 'parent', title: 'Context', eyebrow: '02' },
   { id: 'metadata', title: 'Metadata', eyebrow: '03' },
   { id: 'intake', title: 'Intake', eyebrow: '04' },
   { id: 'planning', title: 'Planning Depth', eyebrow: '05' },
@@ -82,18 +146,18 @@ export const stepReviewGuidance: Record<string, StepReviewGuidance> = {
     notImplemented: 'No execution, issue creation, or automation is triggered from this step.',
   },
   parent: {
-    purpose: 'Choose where the work belongs without making DK Arkitekter OS the default parent.',
-    check: 'Check parent options, defaults, and warnings for the selected classification.',
+    purpose: 'Choose where the work belongs or which groups/projects/modules are affected.',
+    check: 'Check group/project/module logic, defaults, and whether DK Arkitekter OS is not treated as the default parent.',
     notImplemented: 'No registry write, project creation, or external-system integration is implemented.',
   },
   metadata: {
     purpose: 'Set the packet title and packet id used in copyable handoff text.',
-    check: 'Check whether title, slug, classification, parent, and status are clear enough.',
+    check: 'Check whether title, slug, classification, context, and status are clear enough.',
     notImplemented: 'No staging folder or packet files are generated from this UI.',
   },
   intake: {
-    purpose: 'Capture the human context that cannot be reduced to dropdowns.',
-    check: 'Check whether the amount of typing is acceptable and the grouped fields make sense.',
+    purpose: 'Capture the minimum human context Codex needs for a useful handoff.',
+    check: 'Check whether these questions help explain the task, outcome, boundaries, and source material.',
     notImplemented: 'No dictation, speech recognition, or audio handling is implemented.',
   },
   planning: {
@@ -102,8 +166,8 @@ export const stepReviewGuidance: Record<string, StepReviewGuidance> = {
     notImplemented: 'No Linear issue breakdown or planning-pack file generation is implemented.',
   },
   scope: {
-    purpose: 'Confirm blocked work and record short scope/non-goal notes.',
-    check: 'Check whether blocked work is obvious and not mixed with active work.',
+    purpose: 'Confirm what this packet does not authorize and record short scope/non-goal notes.',
+    check: 'Check whether blocked work reads as safety boundaries, not selected tasks.',
     notImplemented: 'Blocked items stay blocked; selecting them here does not approve them.',
   },
   review: {
@@ -112,26 +176,27 @@ export const stepReviewGuidance: Record<string, StepReviewGuidance> = {
     notImplemented: 'No write action, registry mutation, or execution setup happens here.',
   },
   result: {
-    purpose: 'Provide copyable output while preserving packet-first handoff behavior.',
-    check: 'Check whether the copy panels are useful and not too prominent for future features.',
+    purpose: 'Provide the handoff/copy area after the Review step has checked the packet.',
+    check: 'Check whether this feels distinct from Review: less checking, more copy-and-handoff.',
     notImplemented: 'No file generation, Codex launch, Linear/GitHub integration, or deployment happens here.',
   },
 };
 
 export const initialLauncherState: LauncherFormState = {
   classification: '',
-  parentContext: '',
-  parentProject: '',
+  parentMode: '',
+  parentItemId: '',
+  affectedItemIds: [],
   title: '',
   slug: '',
   slugTouched: false,
   status: 'approved_for_manual_execution',
   intake: {
-    problemContext: '',
-    whyItMatters: '',
-    currentWorkflow: '',
-    targetWorkflow: '',
-    painPoints: '',
+    rawIdea: '',
+    requestedOutcome: '',
+    currentState: '',
+    targetState: '',
+    constraints: '',
     sourceMaterials: '',
   },
   planningDepth: ['Basic'],
