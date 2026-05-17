@@ -26,6 +26,7 @@ Status: `approved_for_execution`
 | Result should not feel like a duplicate Review page. | Dobromir | `2026-05-17` | Applied | Reframed Result as handoff/copy output after review. |
 | Start may need a New group option. | Dobromir | `2026-05-17` | Applied as proposal | Added New group as a proposed future start type, not an active V1.1 classification. |
 | Available modules should be visible in Parent Context. | Dobromir | `2026-05-17` | Applied | For `new_module`, project parents and module parents are now shown directly as selectable cards. |
+| Dark/black theme should be the default. | Dobromir | `2026-05-17` | Applied | The app now opens in dark mode by default while keeping explicit Light and Dark buttons. |
 
 ## Open Decisions For Future Packet
 

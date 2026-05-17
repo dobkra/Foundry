@@ -32,6 +32,7 @@ Recorded on `2026-05-17`:
 - `New group` is currently treated as a proposed future classification because V1.1 is still based on the approved Launcher classification model.
 - Parent Context should make available modules visible instead of requiring Dobromir to discover the `Parent module` dropdown path.
 - Current project/module hierarchy is still static and may need a stronger registry-backed model later.
+- Dark/black mode should be the default theme, with Light still available as a button.
 
 ## Remaining Review Focus
 

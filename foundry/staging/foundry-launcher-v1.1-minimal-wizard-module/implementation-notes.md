@@ -88,6 +88,7 @@ Applied after Dobromir's follow-up feedback on Start and Parent Context:
 - Replaced the hidden module-parent path with visible project and module parent cards for `new_module`.
 - Made available modules visible in Parent Context without requiring a separate dropdown discovery step.
 - Preserved the current static read-only hierarchy and recorded registry-backed hierarchy as a future decision.
+- Set the app to open in dark mode by default while keeping Light and Dark buttons available.
 
 ## Remaining UI/Product Decisions
 

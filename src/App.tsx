@@ -66,7 +66,7 @@ function ThemeSwitch({
 
 function App() {
   const [activeScreen, setActiveScreen] = useState<'home' | 'launcher'>('home');
-  const [theme, setTheme] = useState<ThemeMode>('light');
+  const [theme, setTheme] = useState<ThemeMode>('dark');
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
