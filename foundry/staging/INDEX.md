@@ -2,7 +2,7 @@
 
 This is the manual index of Foundry Launcher staging packets.
 
-V0.3 through V1.0 packet tracking remains manual. This index does not create folders, update Linear, update GitHub issues, trigger Codex, mutate the project registry, or enable automation.
+V0.3 through V1.1 packet tracking remains manual. This index does not create folders, update Linear, update GitHub issues, trigger Codex, mutate the project registry, or enable automation.
 
 | Packet id | Packet title | Classification | Status | Parent project/workflow/module | Approval state | Execution boundary | Packet folder |
 |---|---|---|---|---|---|---|---|
@@ -16,6 +16,7 @@ V0.3 through V1.0 packet tracking remains manual. This index does not create fol
 | `foundry-launcher-v0.9-implementation-readiness` | Foundry Launcher V0.9 Implementation Readiness | `work_package` | `approved_for_manual_execution` | Foundry / Foundry Launcher | Approved for documentation/manual implementation-readiness planning | Documentation/manual implementation-readiness only. UI implementation, automation, integrations, deployment, and Codex launch remain blocked. | [foundry-launcher-v0.9-implementation-readiness/](foundry-launcher-v0.9-implementation-readiness/) |
 | `foundry-launcher-v1-local-ui-foundation` | Foundry Launcher V1.0 Local UI Foundation | `work_package` | `approved_for_execution` | Foundry / Foundry Launcher | Approved for first narrow local/internal UI foundation | Local/internal UI foundation only. No deployment, automation, external integrations, registry mutation, Codex launch, or DK Arkitekter OS changes. Pre-flight found no suitable UI shell, so this packet creates an implementation-blocker report instead of UI. | [foundry-launcher-v1-local-ui-foundation/](foundry-launcher-v1-local-ui-foundation/) |
 | `foundry-control-center-app-shell-bootstrap` | Foundry Control Center App Shell Bootstrap | `work_package` | `approved_for_execution` | Foundry / Foundry Control Center | Approved for minimal local/internal app shell bootstrap | Local/internal app shell only. No deployment, automation, external integrations, registry mutation, authentication, or DK Arkitekter OS changes. | [foundry-control-center-app-shell-bootstrap/](foundry-control-center-app-shell-bootstrap/) |
+| `foundry-launcher-v1.1-minimal-wizard-module` | Foundry Launcher V1.1 Minimal Wizard Module | `work_package` | `approved_for_execution` | Foundry / Foundry Launcher | Approved for minimal local/internal Launcher wizard module | Local/internal wizard only. Copyable output only. No file generation, deployment, automation, external integrations, registry mutation, Codex launch, or DK Arkitekter OS changes. | [foundry-launcher-v1.1-minimal-wizard-module/](foundry-launcher-v1.1-minimal-wizard-module/) |
 
 ## Index Rules
 

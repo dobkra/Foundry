@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import LauncherWizard from './modules/launcher/LauncherWizard';
+import type { ThemeMode } from './modules/launcher/launcherTypes';
+
 type ModuleCard = {
   title: string;
   status: string;
@@ -10,10 +14,10 @@ type ModuleCard = {
 const modules: ModuleCard[] = [
   {
     title: 'Foundry Launcher',
-    status: 'Coming next',
+    status: 'Available',
     purpose: 'Start and stage Foundry work before execution.',
-    currentStatus: 'UI shell ready; Launcher module not implemented yet.',
-    nextStep: 'Build minimal Launcher wizard module.',
+    currentStatus: 'Minimal local wizard module ready for visual review.',
+    nextStep: 'Use the wizard to prepare copyable packet summaries and prompt placeholders.',
     blocked: [
       'Linear/GitHub/Codex integration',
       'automation',
@@ -31,7 +35,53 @@ const blockedCapabilities = [
   'No registry mutation',
 ];
 
+function ThemeSwitch({
+  theme,
+  onThemeChange,
+}: {
+  theme: ThemeMode;
+  onThemeChange: (theme: ThemeMode) => void;
+}) {
+  return (
+    <div className="theme-switch" aria-label="Theme mode">
+      <button
+        aria-pressed={theme === 'light'}
+        className={`theme-option ${theme === 'light' ? 'theme-option--active' : ''}`}
+        onClick={() => onThemeChange('light')}
+        type="button"
+      >
+        Light
+      </button>
+      <button
+        aria-pressed={theme === 'dark'}
+        className={`theme-option ${theme === 'dark' ? 'theme-option--active' : ''}`}
+        onClick={() => onThemeChange('dark')}
+        type="button"
+      >
+        Dark
+      </button>
+    </div>
+  );
+}
+
 function App() {
+  const [activeScreen, setActiveScreen] = useState<'home' | 'launcher'>('home');
+  const [theme, setTheme] = useState<ThemeMode>('dark');
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  if (activeScreen === 'launcher') {
+    return (
+      <LauncherWizard
+        onBackHome={() => setActiveScreen('home')}
+        onThemeChange={setTheme}
+        theme={theme}
+      />
+    );
+  }
+
   return (
     <main className="shell" aria-labelledby="app-title">
       <section className="hero" aria-describedby="app-subtitle">
@@ -40,6 +90,7 @@ function App() {
         <p id="app-subtitle" className="subtitle">
           Internal execution factory control surface
         </p>
+        <ThemeSwitch theme={theme} onThemeChange={setTheme} />
       </section>
 
       <section className="notice" aria-label="Operating boundary">
@@ -83,6 +134,14 @@ function App() {
                   ))}
                 </ul>
               </div>
+
+              <button
+                className="primary-button"
+                onClick={() => setActiveScreen('launcher')}
+                type="button"
+              >
+                Open Launcher wizard
+              </button>
             </article>
           ))}
         </div>
@@ -109,7 +168,7 @@ function App() {
       <section className="grid-section" aria-labelledby="boundary-title">
         <div className="section-heading">
           <h2 id="boundary-title">Shell boundary</h2>
-          <p>The packet remains the source of truth. The Launcher wizard is not implemented yet.</p>
+          <p>The packet remains the source of truth. The Launcher wizard produces copyable output only.</p>
         </div>
 
         <ul className="boundary-list">
