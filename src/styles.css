@@ -837,6 +837,102 @@ h1 {
   line-height: 1.5;
 }
 
+.generated-file-list,
+.markdown-output {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 16px;
+}
+
+.generated-file-list h3,
+.markdown-output h3 {
+  color: var(--heading);
+  font-size: 1.05rem;
+}
+
+.generated-file-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.generated-file-list li {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-subtle);
+  color: var(--text);
+  padding: 6px 10px;
+  font-family: "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+}
+
+.generated-file-list p,
+.markdown-output p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.markdown-output__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.markdown-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.file-tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.file-tab {
+  display: grid;
+  gap: 2px;
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-subtle);
+  color: var(--text);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.file-tab span {
+  font-family: "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.file-tab small {
+  color: var(--muted);
+}
+
+.file-tab--active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--heading);
+}
+
+.markdown-preview {
+  min-height: 360px;
+  font-family: "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
 .result-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -903,12 +999,17 @@ h1 {
     padding: 28px 0;
   }
 
-  .section-heading,
-  .module-card__header,
-  .launcher-header,
-  .copy-panel__header {
-    align-items: start;
-    flex-direction: column;
+    .section-heading,
+    .module-card__header,
+    .launcher-header,
+    .markdown-output__header,
+    .copy-panel__header {
+      align-items: start;
+      flex-direction: column;
+  }
+
+  .markdown-actions {
+    justify-content: flex-start;
   }
 
   .launcher-shell {
